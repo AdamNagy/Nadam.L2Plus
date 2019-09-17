@@ -34,5 +34,13 @@ namespace Tests
             string result = 7.ToRoman();
             Assert.AreEqual("VII", result);
         }
+
+        [TestMethod]
+        public void Convert10()
+        {
+            string result = 10.ToRoman();
+            Assert.AreEqual("X", result);
+        }
+
     }
 }

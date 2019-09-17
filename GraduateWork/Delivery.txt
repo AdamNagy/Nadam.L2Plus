@@ -1,0 +1,21 @@
+FTP account, passphase:
+Azure [web app/account/storage] info:
+
+Environments:
+Prod/Alpha
+site url:
+api url:
+
+Test
+site url:
+api url: 
+Postman test-env config file
+
+Dev
+Setup dev env: (IIS, host file change)
+Postman dev-env config file
+
+Other infos:
+
+Backend Deployment Process:
+Frontend Deployment Process:

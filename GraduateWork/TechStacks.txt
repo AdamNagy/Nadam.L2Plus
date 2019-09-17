@@ -1,0 +1,27 @@
+Database
+----------------------------
+Db server: Sql Server * (Sql Server 2017, 2019)
+
+Backend Tech Stack
+----------------------------
+Platform: .NET Framework
+Web library: ASP.NET MVC
+Logger: NLog
+DI: StructureMap
+ORM: EF
+Database: * SqlServer
+Other libraries/packages:
+  Newtonsoft Json
+  Automapper
+Mail server: **TBA**
+Unit testing: NUnit
+Basic architechture: 3-layered (Db, Services, Site)
+
+Front-end Tech Stack
+----------------------------
+MVC Framework: **Angular??** (Ngrx, Ngrx/Store, ...)
+  alternative: React, Redux, ...
+Language: Typescript
+Markup: HTML
+Style: Scss
+Styleing library: Bootstrap
