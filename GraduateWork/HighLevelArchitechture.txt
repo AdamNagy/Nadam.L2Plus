@@ -1,0 +1,3 @@
+Solution design
+default namespace: epam.nadamnotes
+API Design
