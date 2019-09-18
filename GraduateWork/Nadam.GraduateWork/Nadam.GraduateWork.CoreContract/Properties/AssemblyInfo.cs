@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Nadam.Core")]
+[assembly: AssemblyTitle("Nadam.GraduateWork.CoreContract")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Nadam.Core")]
+[assembly: AssemblyProduct("Nadam.GraduateWork.CoreContract")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("55ab77bf-6325-485d-99eb-d332dca366f1")]
+[assembly: Guid("724da50a-6556-442f-9763-93f4bac4a4b1")]
 
 // Version information for an assembly consists of the following four values:
 //
