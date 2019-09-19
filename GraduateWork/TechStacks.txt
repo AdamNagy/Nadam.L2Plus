@@ -1,26 +1,29 @@
-Database
-----------------------------
+Data persistance
+--------------------------------------------------------
 Db server: Sql Server * (Sql Server 2017, 2019)
+Azure blob storage
+Idea: SQL server would store meta data about the notes, 
+  but the actual note would be in files. (text, image, voice, etc)
+  other entities like accounts would also be stored in the databse
 
 Backend Tech Stack
-----------------------------
-Platform: .NET Framework
-Web library: ASP.NET MVC
+--------------------------------------------------------
+Platform: .NET Core
+Web library: ASP.NET Core Web API
 Logger: NLog
 DI: StructureMap
 ORM: EF
-Database: * SqlServer
 Other libraries/packages:
   Newtonsoft Json
   Automapper
 Mail server: **TBA**
 Unit testing: NUnit
 Basic architechture: 3-layered (Db, Services, Site)
+Job runner: Hangfire
 
 Front-end Tech Stack
-----------------------------
-MVC Framework: **Angular??** (Ngrx, Ngrx/Store, ...)
-  alternative: React, Redux, ...
+--------------------------------------------------------
+MVC Framework: React, Redux
 Language: Typescript
 Markup: HTML
 Style: Scss
