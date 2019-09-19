@@ -14,6 +14,7 @@ namespace Nadam.GraduateWork.Web.Controllers
         // DeleteNote
         // CreateNote
 
-        // ShareNote: secure url
+        // ShareNoteWith 
+        // GetShareableLink: secure url
     }
 }

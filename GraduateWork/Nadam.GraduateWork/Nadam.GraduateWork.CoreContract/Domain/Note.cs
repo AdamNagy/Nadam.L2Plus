@@ -1,20 +1,54 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Nadam.GraduateWork.CoreContract.Domain
 {
-    public class Note
+    public struct Note
     {
-        public readonly int NoteId;
-        public string Title { get; set; }
-        public string Text { get; set; }
+        public int NoteId { get; private set; }
+        public string Title { get; private set; }
+        public string Text { get; private set; }
 
-        public Note(int id)
+        /// <summary>
+        /// Account id, the person who created the actual note
+        /// </summary>
+        public Guid Owner { get; set; }
+
+        /// <summary>
+        /// User guids, users who can see this note
+        /// </summary>
+        public IEnumerable<Guid> SharedWith{ get; set; }
+
+        /// <summary>
+        /// string used in the url generated from title
+        /// </summary>
+        public string Slug { get; private set; }
+
+        /// <summary>
+        /// Number of the tab the current note is located on.
+        /// </summary>
+        public int TabNumber { get; private set; }
+
+        /// <summary>
+        /// Position on the tab, added in x:y format using real numbers: 2.3 -> (x:2 ; y:3)
+        /// </summary>
+        public double Coordinates { get; private set; }
+
+        public Note(
+            int noteId,
+            string title,
+            string text,
+            string slug,
+            int tabNum,
+            double position)
         {
-            NoteId = id;
+            NoteId = noteId;
+            Title = title;
+            Text = text;
+            Slug = slug;
+            TabNumber = tabNum;
+            Coordinates = position;
         }
     }
 }
