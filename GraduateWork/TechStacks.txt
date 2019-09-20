@@ -1,25 +1,33 @@
+Basic architechture: 3-layered (Db, Services, Site)
+
 Data persistance
 --------------------------------------------------------
-Db server: Sql Server * (Sql Server 2017, 2019)
+Db server: Sql Server * (Sql Server 2017, 2019) // Azure SQL
 Azure blob storage
 Idea: SQL server would store meta data about the notes, 
   but the actual note would be in files. (text, image, voice, etc)
   other entities like accounts would also be stored in the databse
 
+> Database model
+
 Backend Tech Stack
 --------------------------------------------------------
-Platform: .NET Core
-Web library: ASP.NET Core Web API
-Logger: NLog
-DI: StructureMap
+Platform: .NET Core	// > POC .NET Core app
+Web library: ASP.NET (?Core) Web API
+Logger: .NET Core Logger (Microsoft.Extensions.Logging)
+DI: .NET Core service provider
 ORM: EF
 Other libraries/packages:
-  Newtonsoft Json
-  Automapper
-Mail server: **TBA**
-Unit testing: NUnit
-Basic architechture: 3-layered (Db, Services, Site)
-Job runner: Hangfire
+  Newtonsoft Json ?? there is a .NET Core candidate json lib
+  Automapper // do not use, manual mapping is much greater
+Unit testing: NUnit, XUnit (2.nd is better, is used by .NET Core dudes)
+Job runner:
+  Op1: Hangfire
+  Op2: custom implementation
+  Op3: Windows Task Scheduler (not good, virtual machine required)
+
+Realtime: SignalR (what if there is conflict)
+// more service instance problem, needs to be extracted to a separated server/service/web app
 
 Front-end Tech Stack
 --------------------------------------------------------
@@ -27,4 +35,4 @@ MVC Framework: React, Redux
 Language: Typescript
 Markup: HTML
 Style: Scss
-Styleing library: Bootstrap
+Styleing library: Bootstrap // rethink
