@@ -16,11 +16,6 @@ namespace Nadam.GraduateWork.CoreContract.Domain
         public Guid Owner { get; set; }
 
         /// <summary>
-        /// User guids, users who can see this note
-        /// </summary>
-        public IEnumerable<Guid> SharedWith{ get; set; }
-
-        /// <summary>
         /// string used in the url generated from title
         /// </summary>
         public string Slug { get; private set; }
@@ -39,6 +34,7 @@ namespace Nadam.GraduateWork.CoreContract.Domain
             int noteId,
             string title,
             string text,
+            Guid owner,
             string slug,
             int tabNum,
             double position)
@@ -46,6 +42,7 @@ namespace Nadam.GraduateWork.CoreContract.Domain
             NoteId = noteId;
             Title = title;
             Text = text;
+            Owner = owner;
             Slug = slug;
             TabNumber = tabNum;
             Coordinates = position;
