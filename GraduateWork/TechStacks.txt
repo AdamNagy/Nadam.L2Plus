@@ -8,6 +8,7 @@ Idea: SQL server would store meta data about the notes,
   but the actual note would be in files. (text, image, voice, etc)
   other entities like accounts would also be stored in the databse
 
+> thin about using simple the db file without the sql server :)
 > Database model
 
 Backend Tech Stack
