@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CshFundemantals", "CshFunde
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6F402AB1-5B73-4804-94CE-C7FA16F8529E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJ05-LINQ", "NJ05-LINQ\NJ05-LINQ.csproj", "{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{6F402AB1-5B73-4804-94CE-C7FA16F8529E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F402AB1-5B73-4804-94CE-C7FA16F8529E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F402AB1-5B73-4804-94CE-C7FA16F8529E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
