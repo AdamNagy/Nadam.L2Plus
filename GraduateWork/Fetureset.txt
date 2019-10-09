@@ -1,13 +1,14 @@
 General Requirements:
-- Create a web-based application using the latest Microsoft and Web technologies?.
-- Host it on Azure?. Feel free to use your Visual Studio Professional Subscription that provides you $50 monthly credit fir Azure services.
-- The system must expose all of its functionality via an open REST API, which can be used by third parties as well (basic CRUD operations)?.
+- Create a web-based application using the latest Microsoft and Web technologies.
+  > Use .NET Core
+- Host it on Azure.
+- Use open REST API, which can be used by third parties as well (basic CRUD operations)
 - Build a simple UI so that the exposed functions can be invoked/tested.
-- Using an SPA is recommended, but you can add Razor renderings directly to your Web API as well, you decide.
-- The system must be able to authenticate users? on a secure way.
+- The system must be able to authenticate users
 - The solution’s architecture must support 20k concurrent users and must be available 99% of the time?. // how to test 20k, how to provide that
 - For data persistence follow the Repository pattern and provide multiple implementations.
 - Every component should implement monitoring and logging, and should be covered with tests. // monitoring, what exactly, how
+  > Logging: exception logging, audit logging
 
 Service Layer Requirements
 - Create an ASP.NET Core Web API application.
@@ -21,15 +22,13 @@ Features fot the notes
 It must support the following types of notes:
 - textual
 - pictures
-- (optional) voice // record voice or upload
 
 It must support the following operations:
 - add
 - delete and restore (N-days trash functionality)
 - modify and undo (M-seconds undo functionality)
 - bulk mode (easily select multiple items)
-- search
+- search (think about huge amount of notes containing huge amount of text)
 - (optional) modify pictures ("Annotate" or "Markup"): support at least two of the following: free-hand drawing, rectangles, lines, stars
 - (optional) sharing notes with other users (by username or email) and with external users (public sharing via "secure" links)
 - (optional) set email reminders
-- (optional) add notes by forwarding emails to an address (from an approved account-bound address)
