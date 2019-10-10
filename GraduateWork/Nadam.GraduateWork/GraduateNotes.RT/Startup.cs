@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using GraduateNotes.RT.Realtime;
 using Hangfire;
+using Hangfire.MySql;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,20 +38,51 @@ namespace GraduateNotes.RT
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //GlobalConfiguration.Configuration.UseStorage(
+            //    new MySqlStorage(Configuration.GetConnectionString("HangfireMySqlConnection"),
+            //    new MySqlStorageOptions
+            //    {
+            //        TransactionIsolationLevel = System.Transactions.IsolationLevel.ReadCommitted,
+            //        QueuePollInterval = TimeSpan.FromSeconds(15),
+            //        JobExpirationCheckInterval = TimeSpan.FromHours(1),
+            //        CountersAggregateInterval = TimeSpan.FromMinutes(5),
+            //        PrepareSchemaIfNecessary = true,
+            //        DashboardJobListLimit = 50000,
+            //        TransactionTimeout = TimeSpan.FromMinutes(1),
+            //        TablesPrefix = "Hangfire"
+            //    })
+            //);
+
             // Add Hangfire services.
             services.AddHangfire(configuration => configuration
                 .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
                 .UseSimpleAssemblyNameTypeSerializer()
                 .UseRecommendedSerializerSettings()
-                .UseSqlServerStorage(Configuration.GetConnectionString("somethingelse"), new SqlServerStorageOptions
-                {
-                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,
-                    UseRecommendedIsolationLevel = true,
-                    UsePageLocksOnDequeue = true,
-                    DisableGlobalLocks = true
-                }));
+                //.UseSqlServerStorage(Configuration.GetConnectionString("MySqlHangfire"), 
+                //new SqlServerStorageOptions
+                //{
+                //    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+                //    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                //    QueuePollInterval = TimeSpan.Zero,
+                //    UseRecommendedIsolationLevel = true,
+                //    UsePageLocksOnDequeue = true,
+                //    DisableGlobalLocks = true
+                //})
+                .UseStorage(
+                    new MySqlStorage(Configuration.GetConnectionString("HangfireMySqlConnection"),
+                    new MySqlStorageOptions
+                    {
+                        TransactionIsolationLevel = System.Transactions.IsolationLevel.ReadCommitted,
+                        QueuePollInterval = TimeSpan.FromSeconds(15),
+                        JobExpirationCheckInterval = TimeSpan.FromHours(1),
+                        CountersAggregateInterval = TimeSpan.FromMinutes(5),
+                        PrepareSchemaIfNecessary = true,
+                        DashboardJobListLimit = 50000,
+                        TransactionTimeout = TimeSpan.FromMinutes(1),
+                        TablesPrefix = "Hangfire"
+                    })
+                )
+            );
 
             // Add the processing server as IHostedService
             services.AddHangfireServer();
@@ -75,7 +109,7 @@ namespace GraduateNotes.RT
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<ChatHub>("/chathub");
+                routes.MapHub<NotesHub>("/chathub");
             });
 
             app.UseCookiePolicy();
