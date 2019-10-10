@@ -1,3 +1,14 @@
 Solution design
 default namespace: epam.nadamnotes
-API Design
+
+Data Persistence
+  1) ?SqlServer
+  2) ?Azure Blob Storage
+
+Service Layer Design
+  1) SignalR, Hangfire
+  2) Domain APIs (login, notes, ?DataPersistence)
+  3) ?Internal Sql Server file and its "API" // alternatice: can go into the Domain API
+
+Front-end Layer
+  1) React/Angular app
