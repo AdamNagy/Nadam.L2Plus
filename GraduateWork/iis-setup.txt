@@ -1,0 +1,14 @@
+install this (dotnet runtime 3.0.0 windows hosting bundle):
+https://dotnet.microsoft.com/download/thank-you/dotnet-runtime-3.0.0-windows-hosting-bundle-installer
+
+create website in iis (phisical location shoul be and empty folder)
+- add a name (test.graduatenotes)
+- add an url (www.test.graduatenotes.com)
+- create 2 phisical sub directories (API, RT)
+- create 2 virtual directories in IIS website (API, RT)
+
+edit hosts file, add the urls from iis
+
+right click the solution in vs -> click publish
+- choose file publis and select the phisical directories for each
+- convert the virtual directories to applications
