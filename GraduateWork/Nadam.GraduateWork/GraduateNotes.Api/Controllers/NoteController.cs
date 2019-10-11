@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GraduateNotes.Core;
 using GraduateNotes.Core.NotesDomain;
 using Microsoft.AspNetCore.Authorization;
@@ -27,6 +26,23 @@ namespace GraduateNotes.API.Controllers
             var userId = HttpContext.User.Identity.Name;
             var myNotes = repository.GetByOwner(userId);
             return myNotes;
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public Note Create([FromBody]Note newNote)
+        {
+            newNote.Owner = HttpContext.User.Identity.Name;
+            var createdNote = repository.Create(newNote);
+            return createdNote;
+        }
+
+        [HttpGet]
+        [Route("delete/{id}")]
+        public bool Delete(int id)
+        {
+            repository.Delete(id);
+            return true;
         }
 
         [HttpPost]

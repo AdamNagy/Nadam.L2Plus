@@ -15,6 +15,12 @@ namespace GraduateNotes.Core.NotesDomain
     {        
         IEnumerable<Note> GetByOwner(string owner);
         bool Share(int noteId, string shareWith);
+
+        Note Create(Note newNote);
+
+        void Delete(int id);
+
+        void Delete(Note note);
     }
 
     public class NoteRepositroy : INoteRepository
@@ -51,9 +57,38 @@ namespace GraduateNotes.Core.NotesDomain
             }
         }
 
+        public Note Create(Note newNote)
+        {
+            int nextId = 1;
+            var nextNote = GetById(nextId);
+            while (nextNote != null)
+            {
+                ++nextId;
+                nextNote = GetById(nextId);
+            }
+
+            newNote.Id = nextId;
+            table.Add(newNote);
+            return newNote;
+        }
+
+        public void Delete(int id)
+        {
+            var note = GetById(id);
+            if (note == null)
+                return;
+
+            Delete(note);
+        }
+
+        public void Delete(Note note)
+        {
+            table.Remove(note);
+        }
+
         public Note GetById(int id)
         {
-            return table.Single(p => p.Id == id);
+            return table.SingleOrDefault(p => p.Id == id);
         }
 
         public IEnumerable<Note> GetByOwner(string owner)

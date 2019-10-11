@@ -22,7 +22,7 @@ namespace GraduateNotes.API.Authentication
         private List<BasicIdentity> _users = new List<BasicIdentity>
         {
             new BasicIdentity { Id = "number-sequ-1", Email= "test1@gmail.com", Password = "test1" },
-            new BasicIdentity { Id = "number-sequ-1", Email= "test2@gmail.com", Password = "test2" },
+            new BasicIdentity { Id = "number-sequ-2", Email= "test2@gmail.com", Password = "test2" },
         };
 
         public BasicIdentity Authenticate(string email, string password)
