@@ -37,7 +37,7 @@ namespace GraduateNotes.Core.NotesDomain
             {
                 table.Add(new Note()
                 {
-                    Id = 1,
+                    // Id = 1,
                     Owner = "number-sequ-1",
                     Type = NoteType.text,
                     Url = "",
@@ -47,7 +47,7 @@ namespace GraduateNotes.Core.NotesDomain
 
                 table.Add(new Note()
                 {
-                    Id = 2,
+                    // Id = 2,
                     Owner = "number-sequ-1",
                     Type = NoteType.text,
                     Url = "",
@@ -67,7 +67,7 @@ namespace GraduateNotes.Core.NotesDomain
                 nextNote = GetById(nextId);
             }
 
-            newNote.Id = nextId;
+            // newNote.Id = nextId;
             table.Add(newNote);
             return newNote;
         }
