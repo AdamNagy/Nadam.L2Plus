@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GraduateNotes.Core;
 using GraduateNotes.Core.NotesDomain;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +22,7 @@ namespace GraduateNotes.API.Controllers
 
         [HttpGet]
         [Route("get")]
-        public IEnumerable<Note> GetMine()
+        public IEnumerable<Note> GetMyNotes()
         {
             var userId = HttpContext.User.Identity.Name;
             var myNotes = repository.GetByOwner(userId);
@@ -46,19 +47,26 @@ namespace GraduateNotes.API.Controllers
         }
 
         [HttpPost]
-        [Route("share")]
-        public string Share(int noteId, string shareWith)
-        {
-            repository.Share(noteId, shareWith);
-            return "All good";
-        }
-
-        [HttpPost]
         [Route("update")]
         public Note Update([FromBody]Note note)
         {
             var updated = repository.Update(note);
             return updated;
+        }
+
+        [HttpGet]
+        [Route("get/shareablelink/{id}")]
+        public IEnumerable<Note> GetShareableLinkFor([FromRoute]int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        [Route("share")]
+        public string Share(int noteId, string shareWith)
+        {
+            repository.Share(noteId, shareWith);
+            return "All good";
         }
     }
 }

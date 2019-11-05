@@ -4,8 +4,8 @@ namespace GraduateNotes.Core
 {
     public class Note
     {
+        public int Id { get; }
         public string Owner { get; set; }
-        public int Id { get; set; }
         public NoteType Type { get; set; }
         public string Url { get; set; }
 
