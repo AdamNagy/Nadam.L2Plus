@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GraduateNotes.DataAccess.Models\GraduateNotes.DataAccess.Contract.csproj" />
+  </ItemGroup>
+
 </Project>

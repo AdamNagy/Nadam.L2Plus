@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GraduateNotes.DataAccess
+namespace GraduateNotes.DataAccess.Models
 {
     public class User
     {

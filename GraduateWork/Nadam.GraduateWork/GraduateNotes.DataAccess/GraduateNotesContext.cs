@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using GraduateNotes.DataAccess.Models;
 
 namespace GraduateNotes.DataAccess
 {

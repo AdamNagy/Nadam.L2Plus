@@ -9,9 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.RT", "..\Grad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.Service", "..\GraduateNotes.Core\GraduateNotes.Service.csproj", "{8AE35745-578E-4CB5-A8DB-1635AB0941A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduateNotes.Infrastructure", "..\GraduateNotes.Infrastructure\GraduateNotes.Infrastructure.csproj", "{BA2F0E6B-01A4-427E-A70D-556019FA2D45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.Service.Infrastructure", "..\GraduateNotes.Infrastructure\GraduateNotes.Service.Infrastructure.csproj", "{BA2F0E6B-01A4-427E-A70D-556019FA2D45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduateNotes.DataAccess", "..\GraduateNotes.DataAccess\GraduateNotes.DataAccess.csproj", "{9146C883-CCC1-433A-92B7-8CC0F6062E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.DataAccess", "..\GraduateNotes.DataAccess\GraduateNotes.DataAccess.csproj", "{9146C883-CCC1-433A-92B7-8CC0F6062E0D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{210F5BA2-6F27-4A30-B85C-E7D2AE91F5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduateNotes.DataAccess.Contract", "..\GraduateNotes.DataAccess.Models\GraduateNotes.DataAccess.Contract.csproj", "{58E45343-DC40-4601-9544-2BD79C7D8517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrduateNotes.DataAccess.Infrastructure", "..\GrduateNotes.DataAccess.Infrastructure\GrduateNotes.DataAccess.Infrastructure.csproj", "{6750087C-5349-4615-9795-57A2FB7379FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{5B36A702-428D-45B4-ACF0-E361A0E97654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +47,24 @@ Global
 		{9146C883-CCC1-433A-92B7-8CC0F6062E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9146C883-CCC1-433A-92B7-8CC0F6062E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9146C883-CCC1-433A-92B7-8CC0F6062E0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E45343-DC40-4601-9544-2BD79C7D8517}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E45343-DC40-4601-9544-2BD79C7D8517}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E45343-DC40-4601-9544-2BD79C7D8517}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E45343-DC40-4601-9544-2BD79C7D8517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6750087C-5349-4615-9795-57A2FB7379FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6750087C-5349-4615-9795-57A2FB7379FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6750087C-5349-4615-9795-57A2FB7379FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6750087C-5349-4615-9795-57A2FB7379FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AE35745-578E-4CB5-A8DB-1635AB0941A6} = {5B36A702-428D-45B4-ACF0-E361A0E97654}
+		{BA2F0E6B-01A4-427E-A70D-556019FA2D45} = {5B36A702-428D-45B4-ACF0-E361A0E97654}
+		{9146C883-CCC1-433A-92B7-8CC0F6062E0D} = {210F5BA2-6F27-4A30-B85C-E7D2AE91F5E6}
+		{58E45343-DC40-4601-9544-2BD79C7D8517} = {210F5BA2-6F27-4A30-B85C-E7D2AE91F5E6}
+		{6750087C-5349-4615-9795-57A2FB7379FC} = {210F5BA2-6F27-4A30-B85C-E7D2AE91F5E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD1F890D-4237-4C40-8B05-BACB49BFC566}
