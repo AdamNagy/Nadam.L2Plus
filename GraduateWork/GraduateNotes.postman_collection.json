@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "7c0af9b2-02bf-4522-921a-d35b44bddf91",
+		"name": "GraduateNotes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test-/api/note/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.test.graduatenotes.com/api/api/note/get",
+					"protocol": "http",
+					"host": [
+						"www",
+						"test",
+						"graduatenotes",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"note",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test-/api/account/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Email\": \"test@valami.com\",\n\t\"Password\": \"mysecurepass\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://www.test.graduatenotes.com/api/api/account/login",
+					"protocol": "http",
+					"host": [
+						"www",
+						"test",
+						"graduatenotes",
+						"com"
+					],
+					"path": [
+						"api",
+						"api",
+						"account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dev-/api/Account/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Email\": \"test1@gmail.com\",\n\"Password\": \"test1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44312/api/Account/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44312",
+					"path": [
+						"api",
+						"Account",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dev-/api/note/get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im51bWJlci1zZXF1LTEiLCJuYmYiOjE1NzA3NDU3MTksImV4cCI6MTU3MTM1MDUxOSwiaWF0IjoxNTcwNzQ1NzE5fQ.YH5-a626ePD5LaG2xL9ujZB2TudaVyln-4sZ2WEWZmc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44312/api/note/get",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44312",
+					"path": [
+						"api",
+						"note",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dev-/api/note/update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im51bWJlci1zZXF1LTEiLCJuYmYiOjE1NzA3NDU3MTksImV4cCI6MTU3MTM1MDUxOSwiaWF0IjoxNTcwNzQ1NzE5fQ.YH5-a626ePD5LaG2xL9ujZB2TudaVyln-4sZ2WEWZmc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"owner\": \"number-sequ-1\",\r\n        \"id\": 1,\r\n        \"type\": 0,\r\n        \"url\": \"\",\r\n        \"title\": \"Friday todos:\",\r\n        \"text\": \"Demo L2plus app for others and pray to god some other text added\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44312/api/note/update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44312",
+					"path": [
+						"api",
+						"note",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dev-/api/note/delete/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im51bWJlci1zZXF1LTEiLCJuYmYiOjE1NzA3ODkyMTEsImV4cCI6MTU3MTM5NDAxMSwiaWF0IjoxNTcwNzg5MjExfQ.BR69UYbVm1HyBPD9EuLCA4BKgPlElN8brJIqUVUD33s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44312/api/note/delete/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44312",
+					"path": [
+						"api",
+						"note",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dev-/api/note/create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Im51bWJlci1zZXF1LTEiLCJuYmYiOjE1NzA3ODkyMTEsImV4cCI6MTU3MTM5NDAxMSwiaWF0IjoxNTcwNzg5MjExfQ.BR69UYbVm1HyBPD9EuLCA4BKgPlElN8brJIqUVUD33s",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"owner\": \"number-sequ-1\",\r\n        \"type\": 0,\r\n        \"url\": \"\",\r\n        \"title\": \"Next week todos:\",\r\n        \"text\": \"some newly created note\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44312/api/note/create",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44312",
+					"path": [
+						"api",
+						"note",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
