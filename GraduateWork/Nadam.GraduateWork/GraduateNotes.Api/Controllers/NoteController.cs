@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using GraduateNotes.Core;
-using GraduateNotes.Core.NotesDomain;
+using GraduateNotes.Service.Contract.Interfaces;
+using GraduateNotes.Service.Contract.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +13,11 @@ namespace GraduateNotes.API.Controllers
     [Authorize]
     public class NoteController : ControllerBase
     {
-        private INoteRepository repository;
+        private INoteService service;
 
-        public NoteController(INoteRepository _repository)
+        public NoteController(INoteService _service)
         {
-            repository = _repository;
+            service = _service;
         }
 
         [HttpGet]
@@ -25,48 +25,48 @@ namespace GraduateNotes.API.Controllers
         public IEnumerable<Note> GetMyNotes()
         {
             var userId = HttpContext.User.Identity.Name;
-            var myNotes = repository.GetByOwner(userId);
+            var myNotes = service.GetMyNotes(userId);
             return myNotes;
         }
 
-        [HttpPost]
-        [Route("create")]
-        public Note Create([FromBody]Note newNote)
-        {
-            newNote.Owner = HttpContext.User.Identity.Name;
-            var createdNote = repository.Create(newNote);
-            return createdNote;
-        }
+        //[HttpPost]
+        //[Route("create")]
+        //public Note Create([FromBody]Note newNote)
+        //{
+        //    newNote.Owner = HttpContext.User.Identity.Name;
+        //    var createdNote = service.Create(newNote);
+        //    return createdNote;
+        //}
 
-        [HttpGet]
-        [Route("delete/{id}")]
-        public bool Delete(int id)
-        {
-            repository.Delete(id);
-            return true;
-        }
+        //[HttpGet]
+        //[Route("delete/{id}")]
+        //public bool Delete(int id)
+        //{
+        //    service.Delete(id);
+        //    return true;
+        //}
 
-        [HttpPost]
-        [Route("update")]
-        public Note Update([FromBody]Note note)
-        {
-            var updated = repository.Update(note);
-            return updated;
-        }
+        //[HttpPost]
+        //[Route("update")]
+        //public Note Update([FromBody]Note note)
+        //{
+        //    var updated = service.Update(note);
+        //    return updated;
+        //}
 
-        [HttpGet]
-        [Route("get/shareablelink/{id}")]
-        public IEnumerable<Note> GetShareableLinkFor([FromRoute]int id)
-        {
-            throw new NotImplementedException();
-        }
+        //[HttpGet]
+        //[Route("get/shareablelink/{id}")]
+        //public IEnumerable<Note> GetShareableLinkFor([FromRoute]int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        [HttpPost]
-        [Route("share")]
-        public string Share(int noteId, string shareWith)
-        {
-            repository.Share(noteId, shareWith);
-            return "All good";
-        }
+        //[HttpPost]
+        //[Route("share")]
+        //public string Share(int noteId, string shareWith)
+        //{
+        //    service.Share(noteId, shareWith);
+        //    return "All good";
+        //}
     }
 }

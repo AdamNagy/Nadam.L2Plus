@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GraduateNotes.DataAccess.Models
+namespace GraduateNotes.DataAccess.Contracts.Models
 {
-    public class User
+    public class UserEntity
     {
         [Key]
         public string Id { get; set; }

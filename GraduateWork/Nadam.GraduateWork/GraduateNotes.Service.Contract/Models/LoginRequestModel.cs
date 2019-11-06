@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GraduateNotes.Core.AccountDomain
+﻿namespace GraduateNotes.Service.Contract.Model
 {
     public class LoginRequestModel
     {

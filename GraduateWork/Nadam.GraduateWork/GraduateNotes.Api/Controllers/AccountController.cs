@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using GraduateNotes.Core.AccountDomain;
-using GraduateNotes.API.Authentication;
 using Microsoft.AspNetCore.Authorization;
+
+using GraduateNotes.Service.Contract.Interfaces;
+using GraduateNotes.Service.Contract.Model;
 
 namespace GraduateNotes.API.Controllers
 {
@@ -56,28 +58,28 @@ namespace GraduateNotes.API.Controllers
             return Ok("Sign out successfull");
         }
 
-        [AllowAnonymous]
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegistrationRequestModel requestModel)
-        {
-            // var user = _mapper.Map<User>(userDto);
-            var user = new BasicIdentity()
-            {
-                Email = requestModel.Email,
-                Password = requestModel.Password
-            };
+        //[AllowAnonymous]
+        //[HttpPost("register")]
+        //public async Task<IActionResult> Register([FromBody]RegistrationRequestModel requestModel)
+        //{
+        //    // var user = _mapper.Map<User>(userDto);
+        //    var user = new BasicIdentity()
+        //    {
+        //        Email = requestModel.Email,
+        //        Password = requestModel.Password
+        //    };
 
-            try
-            {
-                // save 
-                _userService.Create(user, requestModel.Password);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        //    try
+        //    {
+        //        // save 
+        //        _userService.Create(user, requestModel.Password);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // return error message if there was an exception
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace GraduateNotes.Core.AccountDomain
+﻿namespace GraduateNotes.Service.Contract.Model
 {
     public class RegistrationRequestModel
     {

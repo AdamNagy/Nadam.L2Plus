@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using GraduateNotes.DataAccess.Models;
+using GraduateNotes.DataAccess.Contracts.Models;
 
 namespace GraduateNotes.DataAccess
 {
-    class GraduateNotesContext : DbContext
+    public class GraduateNotesContext : DbContext
     {
-        public DbSet<Note> Notes { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<NoteEntity> Notes { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
 
         public GraduateNotesContext()
         {
@@ -15,7 +15,7 @@ namespace GraduateNotes.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=GraduateNotes;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Test.GraduateNotes;Trusted_Connection=True;");
         }
     }
 }

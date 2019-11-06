@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace GraduateNotes.DataAccess.Models
+namespace GraduateNotes.DataAccess.Contracts.Models
 {
-    public class Note
+    public class NoteEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

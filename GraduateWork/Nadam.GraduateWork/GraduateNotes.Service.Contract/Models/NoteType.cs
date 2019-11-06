@@ -1,4 +1,4 @@
-﻿namespace GraduateNotes.Core
+﻿namespace GraduateNotes.Service.Contract.Model
 {
     public enum NoteType
     {

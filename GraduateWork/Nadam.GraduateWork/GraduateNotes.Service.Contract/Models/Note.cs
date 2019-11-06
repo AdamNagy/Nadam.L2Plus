@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GraduateNotes.Core
+namespace GraduateNotes.Service.Contract.Model
 {
     public class Note
     {
