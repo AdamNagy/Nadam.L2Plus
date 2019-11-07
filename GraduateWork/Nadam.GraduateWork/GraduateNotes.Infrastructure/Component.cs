@@ -8,11 +8,11 @@ namespace GraduateNotes.Service.Infrastructure
 {
     public class Component
     {
-        public static IServiceCollection Register()
+        public static IServiceCollection Register(IServiceCollection collection)
         {
-            var dataAccessComponent = GrduateNotes.DataAccess.Infrastructure.Component.Register();
+            GrduateNotes.DataAccess.Infrastructure.Component.Register(collection);
 
-            return dataAccessComponent
+            return collection
                 .AddScoped<INoteService, NoteService>()
                 .AddScoped<IUserService, UserService>();
         }

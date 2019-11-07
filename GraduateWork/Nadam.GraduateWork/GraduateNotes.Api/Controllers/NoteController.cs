@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Model;
 using Microsoft.AspNetCore.Authorization;

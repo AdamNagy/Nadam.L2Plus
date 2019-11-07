@@ -34,12 +34,7 @@ namespace GraduateNotes.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var appServiceCollection = Service.Infrastructure.Component.Register();
-            foreach (var appService in appServiceCollection)            
-                services.Add(appService);
-            
-            // services = services.Concat(appServiceCollection) as IServiceCollection;
-
+            services.AddAppInfrastructure();
             services.AddCors();
 
             // GDPR
@@ -53,7 +48,6 @@ namespace GraduateNotes.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<BasicIdentity>();
-                //.AddEntityFrameworkStores<ApplicationDbContext>();
 
             // configure jwt authentication
             var key = Encoding.ASCII.GetBytes(Configuration["AppSettings:Secret"]);
@@ -74,10 +68,7 @@ namespace GraduateNotes.Api
                         ValidateAudience = false
                     };
                 });
-
-            //services.AddScoped<IUserService, UserService>();
-            //services.AddScoped<INoteRepository, NoteRepositroy>();
-
+        
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

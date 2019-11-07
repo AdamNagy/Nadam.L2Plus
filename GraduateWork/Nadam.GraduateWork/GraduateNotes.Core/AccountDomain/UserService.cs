@@ -6,9 +6,7 @@ using GraduateNotes.DataAccess.Contracts.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
@@ -19,7 +17,8 @@ namespace GraduateNotes.Service.AccountDomain
         private IConfiguration configuration;
         private IUserRepository repository;
 
-        public UserService(IConfiguration _configuration,
+        public UserService(
+            IConfiguration _configuration,
             IUserRepository _repository)
         {
             configuration = _configuration;

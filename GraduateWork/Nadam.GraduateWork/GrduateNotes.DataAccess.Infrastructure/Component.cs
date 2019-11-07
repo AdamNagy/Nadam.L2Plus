@@ -8,9 +8,9 @@ namespace GrduateNotes.DataAccess.Infrastructure
 {
     public static class Component
     {
-        public static IServiceCollection Register()
+        public static IServiceCollection Register(IServiceCollection collection)
         {
-            return new ServiceCollection()
+            return collection
                 .AddScoped<INoteRepository, NoteRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddDbContext<GraduateNotesContext>();
