@@ -2,7 +2,7 @@
 using System.Linq;
 
 using GraduateNotes.DataAccess.Contract.Repositories;
-using GraduateNotes.DataAccess.Contracts.Models;
+using GraduateNotes.DataAccess.Contract.Models;
 using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Model;
 
@@ -17,7 +17,7 @@ namespace GraduateNotes.Service.NotesDomain
             repository = _repository;
         }
 
-        public IEnumerable<Note> GetMyNotes(string userId)
+        public IEnumerable<Note> GetMyNotes(int userId)
         {
             var entities = repository.GetNotesFor(userId);
             return entities.Select(Map);
@@ -27,8 +27,8 @@ namespace GraduateNotes.Service.NotesDomain
         {
             return new Note()
             {
-                Owner = entity.Owner,
-                Url = entity.Location
+                Owner = entity.Owner.Id,
+                // Url = entity.FileTitle
             };
         }
     }

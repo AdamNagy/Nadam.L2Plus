@@ -1,4 +1,4 @@
-﻿using GraduateNotes.DataAccess.Contracts.Models;
+﻿using GraduateNotes.DataAccess.Contract.Models;
 
 namespace GraduateNotes.DataAccess.Contract.Repositories
 {

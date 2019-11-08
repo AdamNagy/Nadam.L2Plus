@@ -1,7 +1,7 @@
 ﻿using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Model;
 using GraduateNotes.DataAccess.Contract.Repositories;
-using GraduateNotes.DataAccess.Contracts.Models;
+using GraduateNotes.DataAccess.Contract.Models;
 
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -42,7 +42,7 @@ namespace GraduateNotes.Service.AccountDomain
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id)
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -85,7 +85,7 @@ namespace GraduateNotes.Service.AccountDomain
                 Email = entity.Email,
                 FirstName = entity.FirstName,
                 LastName = entity.LastName,
-                Id = entity.Id,
+                Id = entity.Id.ToString(),
                 Password = entity.Password,
             };
         }

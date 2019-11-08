@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using GraduateNotes.DataAccess.Contract.Repositories;
-using GraduateNotes.DataAccess.Contracts.Models;
+using GraduateNotes.DataAccess.Contract.Models;
 
 namespace GraduateNotes.DataAccess.Repositories
 {
@@ -15,6 +15,8 @@ namespace GraduateNotes.DataAccess.Repositories
         {
             context = _context;
             table = context.Set<UserEntity>();
+
+            context.Database.EnsureCreated();
         }
 
         public UserEntity FindUser(string email, string password)

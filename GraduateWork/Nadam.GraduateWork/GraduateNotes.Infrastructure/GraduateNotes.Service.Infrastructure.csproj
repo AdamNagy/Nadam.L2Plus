@@ -11,7 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GraduateNotes.Core\GraduateNotes.Service.csproj" />
     <ProjectReference Include="..\GraduateNotes.Service.Contract\GraduateNotes.Service.Contract.csproj" />
-    <ProjectReference Include="..\GrduateNotes.DataAccess.Infrastructure\GrduateNotes.DataAccess.Infrastructure.csproj" />
+    <ProjectReference Include="..\GrduateNotes.DataAccess.Infrastructure\GraduateNotes.DataAccess.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

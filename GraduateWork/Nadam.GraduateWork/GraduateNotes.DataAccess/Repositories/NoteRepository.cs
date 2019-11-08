@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using GraduateNotes.DataAccess.Contract.Repositories;
-using GraduateNotes.DataAccess.Contracts.Models;
+using GraduateNotes.DataAccess.Contract.Models;
 
 namespace GraduateNotes.DataAccess.Repositories
 {
@@ -18,9 +18,9 @@ namespace GraduateNotes.DataAccess.Repositories
             table = context.Set<NoteEntity>();
         }
 
-        public IEnumerable<NoteEntity> GetNotesFor(string userId)
+        public IEnumerable<NoteEntity> GetNotesFor(int userId)
         {
-            return table.Where(p => p.Owner == userId);
+            return table.Where(p => p.OwnerId == userId);
         }
     }
 }

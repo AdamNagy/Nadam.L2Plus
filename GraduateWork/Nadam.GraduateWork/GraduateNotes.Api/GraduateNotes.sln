@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.DataAccess.Contract", "..\GraduateNotes.DataAccess.Models\GraduateNotes.DataAccess.Contract.csproj", "{58E45343-DC40-4601-9544-2BD79C7D8517}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrduateNotes.DataAccess.Infrastructure", "..\GrduateNotes.DataAccess.Infrastructure\GrduateNotes.DataAccess.Infrastructure.csproj", "{6750087C-5349-4615-9795-57A2FB7379FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduateNotes.DataAccess.Infrastructure", "..\GrduateNotes.DataAccess.Infrastructure\GraduateNotes.DataAccess.Infrastructure.csproj", "{6750087C-5349-4615-9795-57A2FB7379FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{5B36A702-428D-45B4-ACF0-E361A0E97654}"
 EndProject

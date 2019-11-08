@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -24,7 +25,7 @@ namespace GraduateNotes.API.Controllers
         public IEnumerable<Note> GetMyNotes()
         {
             var userId = HttpContext.User.Identity.Name;
-            var myNotes = service.GetMyNotes(userId);
+            var myNotes = service.GetMyNotes(Convert.ToInt32(userId));
             return myNotes;
         }
 
