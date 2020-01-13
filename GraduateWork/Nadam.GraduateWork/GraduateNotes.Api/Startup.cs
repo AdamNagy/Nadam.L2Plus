@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Text;
-using GraduateNotes.Service.Contract.Model;
+using GraduateNotes.Service.Contract.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,5 +1,5 @@
 ﻿using GraduateNotes.Service.Contract.Interfaces;
-using GraduateNotes.Service.Contract.Model;
+using GraduateNotes.Service.Contract.Models;
 using GraduateNotes.DataAccess.Contract.Repositories;
 using GraduateNotes.DataAccess.Contract.Models;
 
@@ -27,7 +27,7 @@ namespace GraduateNotes.Service.AccountDomain
 
         public BasicIdentity Authenticate(string email, string password)
         {
-            var user = repository.FindUser(email, password);
+            var user = repository.Read(email, password);
 
             // return null if user not found
             if (user == null)
@@ -56,18 +56,18 @@ namespace GraduateNotes.Service.AccountDomain
             return identity;
         }
 
-        //public BasicIdentity Create(BasicIdentity user, string password)
-        //{
-        //    // validation
-        //    if (string.IsNullOrWhiteSpace(password))
-        //        throw new Exception("Password is required");
+        public BasicIdentity Register(BasicIdentity user, string password)
+        {
+            // validation
+            if (string.IsNullOrWhiteSpace(password))
+                throw new Exception("Password is required");
 
-        //    if (repository.FindUser(user.Email) != null)
-        //        throw new Exception("Username \"" + user.Email+ "\" is already taken");
+            if (repository.Read(user.Email) != null)
+                throw new Exception("Username \"" + user.Email + "\" is already taken");
 
-        //    _users.Add(user);
-        //    return user;
-        //}
+            repository.Add(Map(user));
+            return user;
+        }
 
         //public IEnumerable<BasicIdentity> GetAll()
         //{
@@ -77,7 +77,8 @@ namespace GraduateNotes.Service.AccountDomain
         //        return x;
         //    });
         //}
-    
+                
+
         private BasicIdentity Map(UserEntity entity)
         {
             return new BasicIdentity()
@@ -87,6 +88,17 @@ namespace GraduateNotes.Service.AccountDomain
                 LastName = entity.LastName,
                 Id = entity.Id.ToString(),
                 Password = entity.Password,
+            };
+        }
+
+        private UserEntity Map(BasicIdentity from)
+        {
+            return new UserEntity()
+            {
+                Email = from.Email,
+                FirstName = from.FirstName,
+                LastName = from.LastName,
+                Password = from.Password
             };
         }
     }

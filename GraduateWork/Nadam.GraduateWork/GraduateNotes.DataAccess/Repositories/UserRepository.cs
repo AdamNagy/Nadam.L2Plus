@@ -19,12 +19,19 @@ namespace GraduateNotes.DataAccess.Repositories
             context.Database.EnsureCreated();
         }
 
-        public UserEntity FindUser(string email, string password)
+        public UserEntity Add(UserEntity newUser)
+        {
+            table.Add(newUser);
+            context.SaveChanges();
+            return Read(newUser.Email, newUser.Password);
+        }
+
+        public UserEntity Read(string email, string password)
         {
             return table.SingleOrDefault(p => p.Email == email && p.Password == password);
         }
 
-        public UserEntity FindUser(string email)
+        public UserEntity Read(string email)
         {
             return table.SingleOrDefault(p => p.Email == email);
         }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using GraduateNotes.Service.Contract.Interfaces;
-using GraduateNotes.Service.Contract.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using GraduateNotes.Service.Contract.Interfaces;
+using GraduateNotes.Service.Contract.Models;
 
 namespace GraduateNotes.API.Controllers
 {
