@@ -8,11 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using GraduateNotes.Service.Contract.Interfaces;
-using GraduateNotes.Service.Contract.Model;
+using GraduateNotes.Service.Contract.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduateNotes.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -25,13 +26,7 @@ namespace GraduateNotes.API.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [Route("get")]
-        public string Get()
-        {
-            return "hello from account ctrl";
-        }
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         public IActionResult Login([FromBody]LoginRequestModel userParam)
@@ -44,7 +39,9 @@ namespace GraduateNotes.API.Controllers
             return Ok(user);
         }
 
+        [AllowAnonymous]
         [HttpPost]
+        [Route("logout")]
         public async Task<IActionResult> Logout()
         {
             _logger.LogInformation("User {Name} logged out at {Time}.",
@@ -57,28 +54,27 @@ namespace GraduateNotes.API.Controllers
             return Ok("Sign out successfull");
         }
 
-        //[AllowAnonymous]
-        //[HttpPost("register")]
-        //public async Task<IActionResult> Register([FromBody]RegistrationRequestModel requestModel)
-        //{
-        //    // var user = _mapper.Map<User>(userDto);
-        //    var user = new BasicIdentity()
-        //    {
-        //        Email = requestModel.Email,
-        //        Password = requestModel.Password
-        //    };
+        [AllowAnonymous]
+        [HttpPost]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody]RegistrationRequestModel requestModel)
+        {
+            var user = new BasicIdentity()
+            {
+                Email = requestModel.Email,
+                Password = requestModel.Password
+            };
 
-        //    try
-        //    {
-        //        // save 
-        //        _userService.Create(user, requestModel.Password);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // return error message if there was an exception
-        //        return BadRequest(new { message = ex.Message });
-        //    }
-        //}
+            try
+            {
+                _userService.Register(user, requestModel.Password);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // return error message if there was an exception
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

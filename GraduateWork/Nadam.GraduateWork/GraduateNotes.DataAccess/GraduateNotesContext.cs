@@ -10,12 +10,6 @@ namespace GraduateNotes.DataAccess
         public DbSet<NoteSharing> NoteSharing { get; set; }
         public DbSet<Notification> Notifications { get; set; }
 
-        public DbSet<ExceptionType> ExceptionTypes { get; set; }
-        public DbSet<ExceptionLog> ExceptionLogs { get; set; }
-
-        public DbSet<EventType> EventTypes { get; set; }
-        public DbSet<EventMonitor> MyProperty { get; set; }
-
         public GraduateNotesContext()
         {
 

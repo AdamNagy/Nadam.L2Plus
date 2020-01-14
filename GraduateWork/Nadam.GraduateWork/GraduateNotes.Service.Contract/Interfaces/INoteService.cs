@@ -1,4 +1,4 @@
-﻿using GraduateNotes.Service.Contract.Model;
+﻿using GraduateNotes.Service.Contract.Models;
 using System.Collections.Generic;
 
 namespace GraduateNotes.Service.Contract.Interfaces

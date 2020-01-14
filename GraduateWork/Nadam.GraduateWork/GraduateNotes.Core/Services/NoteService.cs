@@ -4,7 +4,7 @@ using System.Linq;
 using GraduateNotes.DataAccess.Contract.Repositories;
 using GraduateNotes.DataAccess.Contract.Models;
 using GraduateNotes.Service.Contract.Interfaces;
-using GraduateNotes.Service.Contract.Model;
+using GraduateNotes.Service.Contract.Models;
 
 namespace GraduateNotes.Service.NotesDomain
 {

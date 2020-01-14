@@ -1,6 +1,4 @@
-﻿using GraduateNotes.Service.Contract.Models;
-
-namespace GraduateNotes.Service.Contract.Model
+﻿namespace GraduateNotes.Service.Contract.Models
 {
     public class Note
     {
@@ -8,6 +6,6 @@ namespace GraduateNotes.Service.Contract.Model
         public int Owner { get; set; }
         public string FileTitle { get; set; }
         public string PublicUrl { get; set; }
-        public File Content { get; set; }
+        public string Content { get; set; }
     }
 }

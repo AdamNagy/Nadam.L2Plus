@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace GraduateNotes.Service.Contract.Model
+namespace GraduateNotes.Service.Contract.Models
 {
     public class BasicIdentity : IdentityUser
     {
@@ -11,3 +11,4 @@ namespace GraduateNotes.Service.Contract.Model
         public string LastName { get; set; }
     }
 }
+
