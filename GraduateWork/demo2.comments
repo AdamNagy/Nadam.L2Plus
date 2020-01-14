@@ -1,4 +1,0 @@
-TODO:
-Primary key vs unique not null
-
-for db first, do not use annotations, use fluent api instead

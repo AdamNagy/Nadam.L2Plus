@@ -1,0 +1,13 @@
+TODO:
+Primary key vs unique not null
+
+for db first, do not use annotations, use fluent api instead
+---------------------------------------------------------------
+DB design
+think about number of users, peak  low time
+max/min/avg amount of 
+	characters in a note,
+	notes per user,
+	images per notes
+
+think about storing image in SQL 
