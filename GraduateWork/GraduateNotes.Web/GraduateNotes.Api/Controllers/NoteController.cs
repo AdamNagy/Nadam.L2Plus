@@ -8,7 +8,7 @@ using GraduateNotes.Service.Contract.Models;
 
 namespace GraduateNotes.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/note")]
     [ApiController]
     [Authorize]
     public class NoteController : ControllerBase
