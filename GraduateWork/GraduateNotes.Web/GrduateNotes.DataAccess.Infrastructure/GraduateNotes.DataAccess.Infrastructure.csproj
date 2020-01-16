@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GraduateNotes.DataAccess.Models\GraduateNotes.DataAccess.Contract.csproj" />
-    <ProjectReference Include="..\GraduateNotes.DataAccess\GraduateNotes.DataAccess.csproj" />
+    <ProjectReference Include="..\GraduateNotes.DataAccess\GraduateNotes.SqlServerDataAccess.csproj" />
   </ItemGroup>
 
 </Project>
