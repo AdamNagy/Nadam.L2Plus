@@ -4,8 +4,8 @@
     {
         public string Id { get; }
         public int Owner { get; set; }
-        public string FileTitle { get; set; }
         public string PublicUrl { get; set; }
         public string Content { get; set; }
+        public NoteType Type { get; set; }
     }
 }
