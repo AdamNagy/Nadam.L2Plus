@@ -57,7 +57,7 @@ namespace GraduateNotes.API.Controllers
         [AllowAnonymous]
         [HttpPost]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegistrationRequestModel requestModel)
+        public IActionResult Register([FromBody]RegistrationRequestModel requestModel)
         {
             var user = new BasicIdentity()
             {
@@ -67,8 +67,9 @@ namespace GraduateNotes.API.Controllers
 
             try
             {
-                _userService.Register(user, requestModel.Password);
-                return Ok();
+                var newUser = _userService.Register(user, requestModel.Password);
+                var loggedInUser = _userService.Authenticate(newUser.Email, newUser.Password);
+                return Ok(loggedInUser);
             }
             catch (Exception ex)
             {

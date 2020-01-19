@@ -13,10 +13,8 @@ namespace GraduateNotes.DataAccess.Contract.Models
 
         public int OwnerId { get; set; }
         public UserEntity Owner { get; set; }
-        public string FileTitle { get; set; }
-
+        public string Content { get; set; }
         public DateTime Created { get; set; }
-
-        public string PublicUrl { get; set; }
+        public int Type { get; set; }
     }
 }

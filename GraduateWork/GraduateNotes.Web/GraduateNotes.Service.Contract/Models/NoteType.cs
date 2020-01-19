@@ -2,6 +2,6 @@
 {
     public enum NoteType
     {
-        text, drawing
+        text = 1, drawing
     }
 }

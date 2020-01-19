@@ -6,5 +6,6 @@ namespace GraduateNotes.Service.Contract.Interfaces
     public interface INoteService
     {
         IEnumerable<Note> GetMyNotes(int userId);
+        Note Create(Note newNote, int owner);
     }
 }

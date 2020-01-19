@@ -17,6 +17,13 @@ namespace GraduateNotes.Service.NotesDomain
             repository = _repository;
         }
 
+        public Note Create(Note newNote, int owner)
+        {
+            var noteEntity = Map(newNote, owner);
+            noteEntity = repository.AddNew(noteEntity);
+            return Map(noteEntity);
+        }
+
         public IEnumerable<Note> GetMyNotes(int userId)
         {
             var entities = repository.GetNotesFor(userId);
@@ -25,10 +32,21 @@ namespace GraduateNotes.Service.NotesDomain
 
         private Note Map(NoteEntity entity)
         {
-            return new Note()
+            return new Note(entity.Id)
             {
-                Owner = entity.Owner.Id,
-                // Url = entity.FileTitle
+                Content = entity.Content,
+                Type = (NoteType)entity.Type,
+                Created = entity.Created
+            };
+        }
+
+        private NoteEntity Map(Note businessModel, int userId)
+        {
+            return new NoteEntity()
+            {
+                Content = businessModel.Content,
+                Type = (int)businessModel.Type,
+                OwnerId = userId
             };
         }
     }

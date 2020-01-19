@@ -29,14 +29,15 @@ namespace GraduateNotes.API.Controllers
             return myNotes;
         }
 
-        //[HttpPost]
-        //[Route("create")]
-        //public Note Create([FromBody]Note newNote)
-        //{
-        //    newNote.Owner = HttpContext.User.Identity.Name;
-        //    var createdNote = service.Create(newNote);
-        //    return createdNote;
-        //}
+        [HttpPost]
+        [Route("post")]
+        public Note Create([FromBody]Note newNote)
+        {
+            int userId = -1;
+            int.TryParse(HttpContext.User.Identity.Name, out userId);
+            var createdNote = service.Create(newNote, userId);
+            return createdNote;
+        }
 
         //[HttpGet]
         //[Route("delete/{id}")]

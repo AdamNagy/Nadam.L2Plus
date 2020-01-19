@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NoteGridComponent } from './notes/note-grid/note-grid.component';
+import { NoteComponent } from './notes/note/note.component';
+import { AccountService } from './account/account.service';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+	{ path: '', redirectTo: '', pathMatch: 'full' },
+	{ path: 'my-notes', component: NoteGridComponent, canActivate: [AccountService] },
+	{ path: 'new-note', component: NoteComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

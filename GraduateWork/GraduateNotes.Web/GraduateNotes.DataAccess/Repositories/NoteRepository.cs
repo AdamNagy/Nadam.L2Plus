@@ -18,9 +18,21 @@ namespace GraduateNotes.DataAccess.Repositories
             table = context.Set<NoteEntity>();
         }
 
+        public NoteEntity AddNew(NoteEntity note)
+        {
+            table.Add(note);
+            context.SaveChanges();
+            return GetById(note.Id);
+        }
+
         public IEnumerable<NoteEntity> GetNotesFor(int userId)
         {
             return table.Where(p => p.OwnerId == userId);
+        }
+
+        public NoteEntity GetById(int id)
+        {
+            return table.SingleOrDefault(p => p.Id == id);
         }
     }
 }
