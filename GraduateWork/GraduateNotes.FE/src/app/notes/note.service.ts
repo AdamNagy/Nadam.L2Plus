@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Note } from './note.model';
 import { environment } from 'src/environments/environment';
@@ -12,29 +12,26 @@ import { AccountService } from '../account/account.service';
 export class NoteService {
 
 	private notes: Note[];
-	// tslint:disable-next-line:variable-name
-	private $_notes: Subject<Note[]>;
+	private _$notes: Subject<Note[]>;
     get $notes(): Subject<Note[]> {
-        return this.$_notes;
+        return this._$notes;
     }
 
 	constructor(
-		private http: HttpClient,
-		private accountService: AccountService) {
-			this.$_notes = new Subject<Note[]>();
+		private http: HttpClient) {
+			this._$notes = new Subject<Note[]>();
 	}
 
-	public get(token: string = ''): Note[] | undefined {
+	public get(token: string): Note[] | undefined {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
-				// tslint:disable-next-line:object-literal-key-quotes
-				'Authorization': 'Bearer ' + token || this.accountService.token
+				'Authorization': 'Bearer ' + token
 			})
 		};
 
 		if ( this.notes ) {
-			this.$_notes.next(this.notes);
+			this._$notes.next(this.notes);
 			return this.notes;
 		} else {
 			this.http.get<Note[]>(`${environment.noteApi}/get`, httpOptions)
@@ -42,26 +39,29 @@ export class NoteService {
 					retry(3)
 				).subscribe(notes => {
 					this.notes = notes;
-					this.$_notes.next(this.notes);
+					this._$notes.next(this.notes);
 				});
 		}
 	}
 
-	public save(note: Note, token: string): boolean {
+	public post(note: Note, token: string): Observable<Note> {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
-				// tslint:disable-next-line:object-literal-key-quotes
-				'Authorization': 'Bearer ' + token || this.accountService.token
+				'Authorization': 'Bearer ' + token
 			})
 		};
 
-		this.http.post<Note>(`${environment.noteApi}/post`, httpOptions)
+		const postOBservable = this.http.post<Note>(`${environment.noteApi}/post`, note, httpOptions)
 			.pipe(
 				retry(3)
-			).subscribe(notes => {
-				this.notes = notes;
-				this.$_notes.next(this.notes);
-			});
+			);
+
+		postOBservable.subscribe(newNote => {
+			this.notes.push(newNote);
+			this._$notes.next(this.notes);
+		});
+
+		return postOBservable;
 	}
 }

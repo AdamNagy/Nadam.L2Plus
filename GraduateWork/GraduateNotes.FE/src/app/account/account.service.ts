@@ -4,7 +4,6 @@ import { LoginRequestModel, UserModel } from './account.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
-import { NoteService } from '../notes/note.service';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({

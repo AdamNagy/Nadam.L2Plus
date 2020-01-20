@@ -4,6 +4,7 @@ import { AccountService } from '../account/account.service';
 import { NoteService } from '../notes/note.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { NoteManager } from '../notes/note.manager';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
 	constructor(
 		private accountService: AccountService,
 		private noteService: NoteService,
+		private noteManager: NoteManager,
 		private manager: HeaderManager,
 		private router: Router,
 		private modalService: BsModalService) {
@@ -59,5 +61,9 @@ export class HeaderComponent implements OnInit {
 
 	public openModal(template: TemplateRef<any>) {
         this.modalRef = this.modalService.show(template);
+	}
+
+	public save() {
+		this.noteManager.saveCurrent();
 	}
 }

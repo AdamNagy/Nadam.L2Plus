@@ -26,7 +26,7 @@ export class TinymceComponent {
 	@Input() initialContent: string;
 	// tslint:disable-next-line:variable-name
 	private _content: string;
-	@Output() content = new EventEmitter<string>();
+	@Output() contentChange = new EventEmitter<string>();
 
 	constructor() {
 		if ( this.initialContent === undefined || '' ) {
@@ -36,7 +36,7 @@ export class TinymceComponent {
 
 	private getContent(event): void {
 	  // console.log(event.editor.getContent());
-	  this.content = event.editor.getContent();
-	  this.content.emit(this._content);
+	  this._content = event.editor.getContent();
+	  this.contentChange.emit(this._content);
 	}
 }

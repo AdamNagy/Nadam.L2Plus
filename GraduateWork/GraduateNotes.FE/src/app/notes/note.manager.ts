@@ -1,29 +1,44 @@
 import { Injectable } from '@angular/core';
 import { Note } from './note.model';
 import { Subject } from 'rxjs';
+import { NoteService } from './note.service';
+import { AccountService } from '../account/account.service';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class NoteService {
+export class NoteManager {
 
-	// tslint:disable-next-line:variable-name
-	private $_currentNote: Subject<Note>;
+	private _$currentNote: Subject<Note>;
 	get $currentNote(): Subject<Note> {
-		return this.$_currentNote;
+		return this._$currentNote;
 	}
-	private note: Note;
+	private currentNote: Note;
 
-	constructor(private noteService: NoteService) {
-		this.$_currentNote = new Subject<Note>();
-	}
-
-	public updateCurrent(note: Note): void {
-		this.note = note;
-		this.$_currentNote.next(this.note);
+	constructor(
+		private noteService: NoteService,
+		private accountService: AccountService) {
+			this._$currentNote = new Subject<Note>();
 	}
 
-		public saveCurrent(): boolean {
+	public updateLocal(note: Note): void {
+		this.currentNote = note;
+		this._$currentNote.next(this.currentNote);
+	}
 
-		}
+	public saveCurrent(): void {
+		this.noteService
+			.post(this.currentNote, this.accountService.token)
+			.subscribe(newNote => {
+				this.updateLocal(newNote);
+			});
+	}
+
+	// public updateCurrent(): void {
+	// 	this.noteService
+	// 		.patch(this.currentNote, this.accountService.token)
+	// 		.subscribe(newNote => {
+	// 			this.updateLocal(newNote);
+	// 		});
+	// }
 }
