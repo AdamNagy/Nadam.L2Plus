@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
 	private isLoggedIn: boolean;
 	private isEditing: boolean;
+
 	public modalRef: BsModalRef;
 
 	constructor(
@@ -39,10 +40,13 @@ export class HeaderComponent implements OnInit {
 	}
 
 	public login(email, password): void {
-		this.accountService.login({Email: email, Password: password}).subscribe(acc => {
-			this.manager.logIn();
-			this.router.navigateByUrl('/my-notes');
-		});
+		this.manager.showLoadingLayer();
+		this.accountService.login({Email: email, Password: password})
+			.subscribe(acc => {
+				this.manager.logIn();
+				this.router.navigateByUrl('/my-notes');
+				this.manager.hideLoadingLayer();
+			} , () => this.manager.hideLoadingLayer());
 	}
 
 	public reloadNotes(): void {

@@ -16,6 +16,7 @@ import { NoteGridComponent } from './notes/note-grid/note-grid.component';
 import { NoteComponent } from './notes/note/note.component';
 import { HeaderComponent } from './header/header.component';
 import { TinymceComponent } from './tinymce/tinymce.component';
+import { LoadingLayerComponent } from './loading-layer/loading-layer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TinymceComponent } from './tinymce/tinymce.component';
 	NoteGridComponent,
 	NoteComponent,
 	HeaderComponent,
-	TinymceComponent
+	TinymceComponent,
+	LoadingLayerComponent
   ],
   imports: [
 	HttpClientModule,
