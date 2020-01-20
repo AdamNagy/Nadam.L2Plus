@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -6,7 +6,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 	templateUrl: './tinymce.component.html',
 	styleUrls: ['./tinymce.component.scss']
 })
-export class TinymceComponent {
+export class TinymceComponent implements OnInit {
 	tinyMceInitConfig = {
 		height: 500,
 		menubar: true,
@@ -29,7 +29,10 @@ export class TinymceComponent {
 	@Output() contentChange = new EventEmitter<string>();
 
 	constructor() {
-		if ( this.initialContent === undefined || '' ) {
+	}
+
+	ngOnInit() {
+		if ( this.initialContent === undefined || this.initialContent === '' ) {
 			this.initialContent = '<p>Write and format your note here</p>';
 		}
 	}

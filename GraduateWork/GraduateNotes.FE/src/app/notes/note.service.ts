@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Note } from './note.model';
 import { environment } from 'src/environments/environment';
@@ -12,17 +12,17 @@ import { AccountService } from '../account/account.service';
 export class NoteService {
 
 	private notes: Note[];
-	private _$notes: Subject<Note[]>;
-    get $notes(): Subject<Note[]> {
+	private _$notes: BehaviorSubject<Note[]>;
+    get $notes(): BehaviorSubject<Note[]> {
         return this._$notes;
     }
 
-	constructor(
-		private http: HttpClient) {
-			this._$notes = new Subject<Note[]>();
+	constructor(private http: HttpClient) {
+		this.notes = [];
+		this._$notes = new BehaviorSubject<Note[]>(this.notes);
 	}
 
-	public get(token: string): Note[] | undefined {
+	public get(token: string): void {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
@@ -30,18 +30,11 @@ export class NoteService {
 			})
 		};
 
-		if ( this.notes ) {
-			this._$notes.next(this.notes);
-			return this.notes;
-		} else {
-			this.http.get<Note[]>(`${environment.noteApi}/get`, httpOptions)
-				.pipe(
-					retry(3)
-				).subscribe(notes => {
-					this.notes = notes;
-					this._$notes.next(this.notes);
-				});
-		}
+		this.http.get<Note[]>(`${environment.noteApi}/get`, httpOptions)
+			.subscribe(notes => {
+				this.notes = notes;
+				this._$notes.next(this.notes);
+			});
 	}
 
 	public post(note: Note, token: string): Observable<Note> {
@@ -52,10 +45,7 @@ export class NoteService {
 			})
 		};
 
-		const postOBservable = this.http.post<Note>(`${environment.noteApi}/post`, note, httpOptions)
-			.pipe(
-				retry(3)
-			);
+		const postOBservable = this.http.post<Note>(`${environment.noteApi}/post`, note, httpOptions);
 
 		postOBservable.subscribe(newNote => {
 			this.notes.push(newNote);
@@ -63,5 +53,27 @@ export class NoteService {
 		});
 
 		return postOBservable;
+	}
+
+	public patch(note: Note, token: string): Observable<Note> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': 'Bearer ' + token
+			})
+		};
+
+		const postOBservable = this.http.post<Note>(`${environment.noteApi}/patch`, note, httpOptions);
+
+		postOBservable.subscribe(newNote => {
+			this.notes.push(newNote);
+			this._$notes.next(this.notes);
+		});
+
+		return postOBservable;
+	}
+
+	public getNoteById(id: number): Note {
+		return this.notes.find(item => item.Id === id);
 	}
 }

@@ -31,29 +31,29 @@ namespace GraduateNotes.API.Controllers
 
         [HttpPost]
         [Route("post")]
-        public Note Create([FromBody]Note newNote)
+        public IActionResult Create([FromBody]Note newNote)
         {
             int userId = -1;
             int.TryParse(HttpContext.User.Identity.Name, out userId);
             var createdNote = service.Create(newNote, userId);
-            return createdNote;
+            return Ok(createdNote);
         }
 
-        //[HttpGet]
-        //[Route("delete/{id}")]
-        //public bool Delete(int id)
-        //{
-        //    service.Delete(id);
-        //    return true;
-        //}
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public bool Delete(int id)
+        {
+            service.Delete(id);
+            return true;
+        }
 
-        //[HttpPost]
-        //[Route("update")]
-        //public Note Update([FromBody]Note note)
-        //{
-        //    var updated = service.Update(note);
-        //    return updated;
-        //}
+        [HttpPost]
+        [Route("patch/{id}")]
+        public Note Update([FromBody]Note note)
+        {
+            var updated = service.Update(note);
+            return updated;
+        }
 
         //[HttpGet]
         //[Route("get/shareablelink/{id}")]

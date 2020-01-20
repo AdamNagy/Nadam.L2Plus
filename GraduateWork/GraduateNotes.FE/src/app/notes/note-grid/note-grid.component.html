@@ -1,5 +1,5 @@
 <div class="container mt-3">
 	<div class="row">
-		<div *ngFor="let note of notes" [innerHtml]="note.content" class="col-md note-cell">{{note.Content}}</div>
+		<div *ngFor="let note of notes" [innerHtml]="note.content" class="note-item" (click)="openNote(note.id)">{{note.Content}}</div>
 	</div>
 </div>

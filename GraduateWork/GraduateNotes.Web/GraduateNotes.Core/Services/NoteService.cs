@@ -24,10 +24,21 @@ namespace GraduateNotes.Service.NotesDomain
             return Map(noteEntity);
         }
 
+        public bool Delete(int id)
+        {
+            repository.
+            throw new System.NotImplementedException();
+        }
+
         public IEnumerable<Note> GetMyNotes(int userId)
         {
             var entities = repository.GetNotesFor(userId);
             return entities.Select(Map);
+        }
+
+        public Note Update(Note toUpdate)
+        {
+            throw new System.NotImplementedException();
         }
 
         private Note Map(NoteEntity entity)

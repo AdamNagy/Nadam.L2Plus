@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, HostBinding } from '@angular/core';
 import { HeaderManager } from './header.manager';
 import { AccountService } from '../account/account.service';
 import { NoteService } from '../notes/note.service';
@@ -13,6 +13,8 @@ import { NoteManager } from '../notes/note.manager';
 	styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+	@HostBinding('class') backgroundColor = 'position-sticky';
 
 	private isLoggedIn: boolean;
 	private isEditing: boolean;
@@ -41,17 +43,23 @@ export class HeaderComponent implements OnInit {
 
 	public login(email, password): void {
 		this.manager.showLoadingLayer();
-		this.accountService.login({Email: email, Password: password})
-			.subscribe(acc => {
-				this.manager.logIn();
-				this.router.navigateByUrl('/my-notes');
-				this.manager.hideLoadingLayer();
-			} , () => this.manager.hideLoadingLayer());
+		this.accountService.login({Email: email, Password: password});
+
+		this.accountService.$token.subscribe(token => {
+				console.log(`token is: ${token}`);
+
+				if ( token !== '' ) {
+					this.manager.logIn();
+					this.manager.hideLoadingLayer();
+					this.router.navigateByUrl('/my-notes');
+				}
+
+			}, () => this.manager.hideLoadingLayer());
 	}
 
-	public reloadNotes(): void {
-		this.noteService.get(this.accountService.token);
-	}
+	// public reloadNotes(): void {
+	// 	this.noteService.get(this.accountService.token);
+	// }
 
 	public createNote(): void {
 		this.manager.turnOnEditingMode();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Note } from '../note.model';
 import { NoteService } from '../note.service';
 import { AccountService } from '../../account/account.service';
+import { Router } from '@angular/router';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -15,14 +16,22 @@ export class NoteGridComponent implements OnInit {
 
 	constructor(
 		private service: NoteService,
-		private accountService: AccountService) {
+		private accountService: AccountService,
+		private router: Router) {
 	}
 
 	ngOnInit() {
-		const token = this.accountService.token;
-		this.notes = this.service.get(token);
+		this.accountService.$token.subscribe(token => {
+			this.service.get(token);
+		});
+
 		this.service.$notes.subscribe(notes => {
 			this.notes = notes;
 		});
+	}
+
+	private openNote(noteId) {
+		console.log(noteId);
+		this.router.navigateByUrl(`/my-notes/${noteId}`);
 	}
 }

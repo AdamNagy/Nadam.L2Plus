@@ -25,14 +25,31 @@ namespace GraduateNotes.DataAccess.Repositories
             return GetById(note.Id);
         }
 
-        public IEnumerable<NoteEntity> GetNotesFor(int userId)
+        public IEnumerable<NoteEntity> GetNotesFor(int userId)        
+            => table.Where(p => p.OwnerId == userId);        
+
+        public NoteEntity GetById(int id)        
+            => table.SingleOrDefault(p => p.Id == id);        
+
+        public NoteEntity Update(NoteEntity note)
         {
-            return table.Where(p => p.OwnerId == userId);
+            var toUpdateNote = GetById(note.Id);
+            if( toUpdateNote == null )            
+                throw new ArgumentException($"given note does not exist: {note.Id} {note.Owner}");
+
+            toUpdateNote.Content = note.Content;
+            context.SaveChanges();
+            return toUpdateNote;
         }
 
-        public NoteEntity GetById(int id)
+        public void Delete(int id)
         {
-            return table.SingleOrDefault(p => p.Id == id);
+            var toDeleteNote = GetById(id);
+            if (toDeleteNote == null)
+                throw new ArgumentException($"given note does not exist: {toDeleteNote.Id} {toDeleteNote.Owner}");
+
+            table.Remove(toDeleteNote);
+            context.SaveChanges();
         }
     }
 }

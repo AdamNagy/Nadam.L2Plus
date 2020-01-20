@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Note } from './note.model';
-import { Subject } from 'rxjs';
+import { Note, NoteType } from './note.model';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { NoteService } from './note.service';
 import { AccountService } from '../account/account.service';
 
@@ -9,16 +9,22 @@ import { AccountService } from '../account/account.service';
 })
 export class NoteManager {
 
-	private _$currentNote: Subject<Note>;
-	get $currentNote(): Subject<Note> {
+	private currentNote: Note;
+	private _$currentNote: BehaviorSubject<Note>;
+	get $currentNote(): BehaviorSubject<Note> {
 		return this._$currentNote;
 	}
-	private currentNote: Note;
 
 	constructor(
 		private noteService: NoteService,
 		private accountService: AccountService) {
-			this._$currentNote = new Subject<Note>();
+			this.currentNote = {
+				Content: '',
+				Id: -1,
+				Created: new Date(),
+				Type: NoteType.text
+			};
+			this._$currentNote = new BehaviorSubject<Note>(this.currentNote);
 	}
 
 	public updateLocal(note: Note): void {
@@ -27,11 +33,22 @@ export class NoteManager {
 	}
 
 	public saveCurrent(): void {
-		this.noteService
-			.post(this.currentNote, this.accountService.token)
-			.subscribe(newNote => {
-				this.updateLocal(newNote);
-			});
+
+		this.accountService.$token.subscribe(token => {
+			if ( this.currentNote.Id === undefined ) {
+				this.noteService
+					.post(this.currentNote, token)
+					.subscribe(newNote => {
+						this.updateLocal(newNote);
+					});
+			} else {
+				this.noteService
+					.patch(this.currentNote, token)
+					.subscribe(newNote => {
+						this.updateLocal(newNote);
+					});
+			}
+		});
 	}
 
 	// public updateCurrent(): void {
