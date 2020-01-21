@@ -26,8 +26,8 @@ namespace GraduateNotes.Service.NotesDomain
 
         public bool Delete(int noteId, int userId)
         {
-            // repository.
-            throw new System.NotImplementedException();
+            repository.Delete(noteId);
+            return true;
         }
 
         public IEnumerable<Note> GetMyNotes(int userId)

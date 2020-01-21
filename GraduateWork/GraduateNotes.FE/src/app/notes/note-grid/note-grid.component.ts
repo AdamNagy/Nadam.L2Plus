@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../note.model';
-import { NoteService } from '../note.service';
-import { AccountService } from '../../account/account.service';
 import { Router } from '@angular/router';
 import { NoteManager } from '../note.manager';
+import { HeaderManager } from 'src/app/header/header.manager';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -17,6 +16,7 @@ export class NoteGridComponent implements OnInit {
 
 	constructor(
 		private noteManager: NoteManager,
+		private headerManager: HeaderManager,
 		private router: Router) {
 	}
 
@@ -24,11 +24,17 @@ export class NoteGridComponent implements OnInit {
 		this.noteManager.getNotes();
 		this.noteManager.$notes.subscribe(notes => {
 			this.notes = notes;
+			this.headerManager.hideLoadingLayer();
 		});
 	}
 
 	private openNote(noteId) {
 		console.log(noteId);
 		this.router.navigateByUrl(`/my-notes/${noteId}`);
+	}
+
+	private delete(noteId) {
+		this.headerManager.showLoadingLayer();
+		this.noteManager.delete(noteId);
 	}
 }

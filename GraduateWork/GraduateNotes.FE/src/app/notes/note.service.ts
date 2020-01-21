@@ -45,7 +45,7 @@ export class NoteService {
 		return this.http.patch<Note>(`${environment.noteApi}/patch`, note, httpOptions);
 	}
 
-	public delete(note: Note, token: string): Observable<boolean> {
+	public delete(noteId: number, token: string): Observable<boolean> {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
@@ -53,7 +53,7 @@ export class NoteService {
 			})
 		};
 
-		return this.http.delete<boolean>(`${environment.noteApi}/delete/${note.noteid}`, httpOptions);
+		return this.http.delete<boolean>(`${environment.noteApi}/delete/${noteId}`, httpOptions);
 	}
 
 	public deleteThese(notes: Note[], token: string): Observable<boolean> {

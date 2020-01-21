@@ -28,7 +28,14 @@ export class NoteManager {
 	private _$selectedNotes: BehaviorSubject<Note[]>;
     get $selectedNotes(): BehaviorSubject<Note[]> {
         return this._$selectedNotes;
-    }
+	}
+
+	// save success
+	private saveSuccess: boolean;
+	private _$saveSuccess: BehaviorSubject<boolean>;
+	get $saveSuccess(): BehaviorSubject<boolean> {
+		return this._$saveSuccess;
+	}
 
 	constructor(
 		private noteService: NoteService,
@@ -44,6 +51,7 @@ export class NoteManager {
 		this._$openedNote = new BehaviorSubject<Note>(this.openedNote);
 		this._$notes = new BehaviorSubject<Note[]>([]);
 		this._$selectedNotes = new BehaviorSubject<Note[]>([]);
+		this._$saveSuccess = new BehaviorSubject<boolean>(false);
 	}
 
 	public updateLocal(note: Note): void {
@@ -58,12 +66,14 @@ export class NoteManager {
 				.post(this.openedNote, this.accountManager.token)
 				.subscribe(newNote => {
 					this.updateLocal(newNote);
+					this._$saveSuccess.next(true);
 				});
 		} else {
 			this.noteService
 				.patch(this.openedNote, this.accountManager.token)
 				.subscribe(newNote => {
 					this.updateLocal(newNote);
+					this._$saveSuccess.next(true);
 				});
 		}
 	}
@@ -82,11 +92,23 @@ export class NoteManager {
 		return note;
 	}
 
-	// public updateCurrent(): void {
-	// 	this.noteService
-	// 		.patch(this.currentNote, this.accountService.token)
-	// 		.subscribe(newNote => {
-	// 			this.updateLocal(newNote);
-	// 		});
-	// }
+	public delete(id: number) {
+		this.noteService.delete(id, this.accountManager.token)
+			.subscribe(() => {
+				const noteToDelete = this.getNoteById(id);
+				this.notes = this.notes.slice(this.notes.indexOf(noteToDelete), 1);
+				this._$notes.next(this.notes);
+			});
+	}
+
+	public reset() {
+		this.notes = [];
+		this.$notes.next([]);
+
+		this.selectedNotes = [];
+		this.$selectedNotes.next([]);
+
+		this.openedNote = undefined;
+		this.$openedNote.next(undefined);
+	}
 }

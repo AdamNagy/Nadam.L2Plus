@@ -1,10 +1,13 @@
 <div class="container mt-3">
-	<div class="row">
-		<div *ngFor="let note of notes"
-			[innerHtml]="note.content"
-			class="note-item"
-			(click)="openNote(note.noteid)">
-			{{note.Content}}
+	<div class="row justify-content-center">
+		<div *ngFor="let note of notes" class="note-item">			
+			<div class="note-header">
+				<button class="btn btn-sm btn-warning mr-1" (click)="delete(note.noteid)">Delete</button>
+				<button class="btn btn-sm btn-info">Select</button>
+			</div>
+
+			<div class="note-content" [innerHtml]="note.content" (click)="openNote()">				
+			</div>
 		</div>
 	</div>
 </div>
