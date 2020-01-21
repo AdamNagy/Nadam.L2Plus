@@ -3,6 +3,7 @@ import { Note } from '../note.model';
 import { Router } from '@angular/router';
 import { NoteManager } from '../note.manager';
 import { HeaderManager } from 'src/app/header/header.manager';
+import { SelectionListManager } from 'src/app/selection-list/selection-list.manager';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -17,6 +18,7 @@ export class NoteGridComponent implements OnInit {
 	constructor(
 		private noteManager: NoteManager,
 		private headerManager: HeaderManager,
+		private selectionManager: SelectionListManager,
 		private router: Router) {
 	}
 
@@ -36,5 +38,9 @@ export class NoteGridComponent implements OnInit {
 	private delete(noteId) {
 		this.headerManager.showLoadingLayer();
 		this.noteManager.delete(noteId);
+	}
+
+	private select(noteId) {
+		this.selectionManager.addToList(noteId);
 	}
 }

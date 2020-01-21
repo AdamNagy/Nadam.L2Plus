@@ -17,6 +17,7 @@ import { NoteComponent } from './notes/note/note.component';
 import { HeaderComponent } from './header/header.component';
 import { TinymceComponent } from './tinymce/tinymce.component';
 import { LoadingLayerComponent } from './loading-layer/loading-layer.component';
+import { SelectionListComponent } from './selection-list/selection-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingLayerComponent } from './loading-layer/loading-layer.component';
 	NoteComponent,
 	HeaderComponent,
 	TinymceComponent,
-	LoadingLayerComponent
+	LoadingLayerComponent,
+	SelectionListComponent
   ],
   imports: [
 	HttpClientModule,

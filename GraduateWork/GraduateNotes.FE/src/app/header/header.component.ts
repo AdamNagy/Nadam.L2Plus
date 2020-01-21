@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit {
 				this.email = (token as any).email;
 				this.manager.logIn();
 				this.manager.hideLoadingLayer();
-				this.modalRef.hide();
+				if ( this.modalRef ) {
+					this.modalRef.hide();
+				}
 				this.router.navigateByUrl('/my-notes');
 			}
 
