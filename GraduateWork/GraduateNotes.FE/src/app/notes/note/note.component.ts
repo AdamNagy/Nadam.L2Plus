@@ -28,7 +28,7 @@ export class NoteComponent implements OnInit {
 	ngOnInit() {
 		this.headerManager.turnOnEditingMode();
 		const id = +this.route.snapshot.paramMap.get('id');
-		this.note = this.noteService.getNoteById(id);
+		this.note = this.noteManager.getNoteById(id);
 
 		if (this.note === undefined) {
 			this.note = new Note();

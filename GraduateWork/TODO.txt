@@ -1,0 +1,9 @@
+- update note
+- delete note
+- multiple select note (deleteion and sharing is available this way)
+- share with other user (read only)
+- public sharable link for note (read only)
+- facebook login
+- simple registration
+
+- full teszt

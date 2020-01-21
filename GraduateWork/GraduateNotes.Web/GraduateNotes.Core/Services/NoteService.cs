@@ -26,7 +26,7 @@ namespace GraduateNotes.Service.NotesDomain
 
         public bool Delete(int id)
         {
-            repository.
+            // repository.
             throw new System.NotImplementedException();
         }
 

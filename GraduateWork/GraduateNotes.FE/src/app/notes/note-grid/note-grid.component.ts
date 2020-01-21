@@ -3,6 +3,7 @@ import { Note } from '../note.model';
 import { NoteService } from '../note.service';
 import { AccountService } from '../../account/account.service';
 import { Router } from '@angular/router';
+import { NoteManager } from '../note.manager';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -15,17 +16,13 @@ export class NoteGridComponent implements OnInit {
 	private notes: Note[] = [];
 
 	constructor(
-		private service: NoteService,
-		private accountService: AccountService,
+		private noteManager: NoteManager,
 		private router: Router) {
 	}
 
 	ngOnInit() {
-		this.accountService.$token.subscribe(token => {
-			this.service.get(token);
-		});
-
-		this.service.$notes.subscribe(notes => {
+		this.noteManager.getNotes();
+		this.noteManager.$notes.subscribe(notes => {
 			this.notes = notes;
 		});
 	}

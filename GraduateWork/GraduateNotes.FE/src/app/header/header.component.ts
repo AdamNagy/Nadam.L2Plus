@@ -5,6 +5,7 @@ import { NoteService } from '../notes/note.service';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NoteManager } from '../notes/note.manager';
+import { AccountManager } from '../account/account.manager';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -22,8 +23,7 @@ export class HeaderComponent implements OnInit {
 	public modalRef: BsModalRef;
 
 	constructor(
-		private accountService: AccountService,
-		private noteService: NoteService,
+		private accountManager: AccountManager,
 		private noteManager: NoteManager,
 		private manager: HeaderManager,
 		private router: Router,
@@ -43,18 +43,18 @@ export class HeaderComponent implements OnInit {
 
 	public login(email, password): void {
 		this.manager.showLoadingLayer();
-		this.accountService.login({Email: email, Password: password});
+		this.accountManager.login({Email: email, Password: password});
 
-		this.accountService.$token.subscribe(token => {
-				console.log(`token is: ${token}`);
+		this.accountManager.$token.subscribe(token => {
+			console.log(`token is: ${token}`);
 
-				if ( token !== '' ) {
-					this.manager.logIn();
-					this.manager.hideLoadingLayer();
-					this.router.navigateByUrl('/my-notes');
-				}
+			if ( token !== '' ) {
+				this.manager.logIn();
+				this.manager.hideLoadingLayer();
+				this.router.navigateByUrl('/my-notes');
+			}
 
-			}, () => this.manager.hideLoadingLayer());
+		}, () => this.manager.hideLoadingLayer());
 	}
 
 	// public reloadNotes(): void {
