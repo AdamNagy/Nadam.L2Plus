@@ -4,8 +4,8 @@ export enum NoteType {
 }
 
 export class Note {
-	public Id: number;
-	public Content: string;
-	public Created: Date;
-	public Type: NoteType;
+	public noteid: number;
+	public content: string;
+	public created: Date;
+	public type: NoteType;
 }

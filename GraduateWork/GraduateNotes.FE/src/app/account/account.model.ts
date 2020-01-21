@@ -11,3 +11,8 @@ export interface UserModel {
 	Email: string;
 	id: string;
 }
+
+export interface RegisterRequestModel {
+	Email: string;
+    Password: string;
+}

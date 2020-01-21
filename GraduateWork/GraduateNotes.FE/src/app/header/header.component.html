@@ -10,14 +10,14 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="basic-addon1">@</span>
 			</div>
-			<input #email type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="test1@gmail.com">
+			<input #email type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="test3">
 		</div>	
 	
 		<div class="input-group width-200 mr-1">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="basic-addon1">**</span>
 			</div>
-			<input #password type="password" class="form-control" placeholder="Passphasae" aria-label="Passphasae" aria-describedby="basic-addon1" value="test1">
+			<input #password type="password" class="form-control" placeholder="Passphasae" aria-label="Passphasae" aria-describedby="basic-addon1" value="test3">
 		</div>	
 		
 		<button type="button" class="btn btn-primary mr-1" (click)="login(email.value, password.value)"> Login </button>
@@ -58,17 +58,17 @@
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="addon-wrapping">@</span>
 			</div>
-			<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+			<input #regemail type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
 		</div>
 
 		<div class="input-group flex-nowrap pb-2">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="addon-wrapping">@</span>
 			</div>
-			<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+			<input #regpassword type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
 		</div>
 
-		<button type="button" class="btn btn-info" (click)="register()">Lets try!</button>
+		<button type="button" class="btn btn-info" (click)="register(regemail.value, regpassword.value)">Lets try!</button>
 	</div>
 </ng-template>
 

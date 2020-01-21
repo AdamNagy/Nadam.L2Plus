@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { LoginRequestModel, UserModel } from './account.model';
+import { LoginRequestModel, UserModel, RegisterRequestModel } from './account.model';
 import { Observable, of, BehaviorSubject, Subject } from 'rxjs';
 import * as _ from 'lodash';
 import { environment } from '../../environments/environment';
@@ -21,6 +21,16 @@ export class AccountService {
 			})
 		};
 
-		return this.http.post<UserModel>(environment.accountAPi, requestModel, httpOptions);
+		return this.http.post<UserModel>(`${environment.accountAPi}/login`, requestModel, httpOptions);
+	}
+
+	public register(registerRequest: RegisterRequestModel): Observable<UserModel> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type': 'application/json'
+			})
+		};
+
+		return this.http.post<UserModel>(`${environment.accountAPi}/register`, registerRequest, httpOptions);
 	}
 }

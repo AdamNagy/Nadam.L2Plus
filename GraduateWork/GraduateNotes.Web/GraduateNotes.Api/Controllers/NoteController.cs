@@ -41,18 +41,25 @@ namespace GraduateNotes.API.Controllers
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(int id)
+        public IActionResult Delete(int id)
         {
-            service.Delete(id);
-            return true;
+            int userId = -1;
+            int.TryParse(HttpContext.User.Identity.Name, out userId);
+            service.Delete(id, userId);
+            return Ok(true);
         }
 
-        [HttpPost]
-        [Route("patch/{id}")]
-        public Note Update([FromBody]Note note)
+        [HttpPatch]
+        [Route("patch")]
+        public IActionResult Update([FromBody]Note note)
         {
-            var updated = service.Update(note);
-            return updated;
+            if (String.IsNullOrEmpty(note.Content))
+                return Ok();
+
+            int userId = -1;
+            int.TryParse(HttpContext.User.Identity.Name, out userId);
+            var updated = service.Update(note, userId);
+            return Ok(updated);
         }
 
         //[HttpGet]

@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	accountAPi: 'https://localhost:44312/api/account/login',
+	accountAPi: 'https://localhost:44312/api/account',
 	noteApi: 'https://localhost:44312/api/note'
 };
 

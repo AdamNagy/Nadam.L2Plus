@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AccountService } from './account.service';
-import { LoginRequestModel, UserModel } from './account.model';
+import { LoginRequestModel, UserModel, RegisterRequestModel } from './account.model';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 
 @Injectable({
@@ -21,11 +21,20 @@ export class AccountManager implements CanActivate  {
 
 	login(requestModel: LoginRequestModel): void {
 		this.service.login(requestModel)
-		.subscribe(account => {
-			this.account = account;
-			this.token = account.token;
-			this._$token.next(this.token);
-		});
+			.subscribe(account => {
+				this.account = account;
+				this.token = account.token;
+				this._$token.next(this.token);
+			});
+	}
+
+	register(requestModel: RegisterRequestModel) {
+		this.service.register(requestModel)
+			.subscribe(account => {
+				this.account = account;
+				this.token = account.token;
+				this._$token.next(this.token);
+			});
 	}
 
 	canActivate(route: ActivatedRouteSnapshot): boolean {

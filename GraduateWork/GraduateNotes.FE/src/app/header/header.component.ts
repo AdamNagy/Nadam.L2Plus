@@ -61,6 +61,23 @@ export class HeaderComponent implements OnInit {
 	// 	this.noteService.get(this.accountService.token);
 	// }
 
+	public register(email, password): void {
+		this.manager.showLoadingLayer();
+		this.accountManager.register({Email: email, Password: password});
+
+		this.accountManager.$token.subscribe(token => {
+			console.log(`token is: ${token}`);
+
+			if ( token !== '' ) {
+				this.manager.logIn();
+				this.manager.hideLoadingLayer();
+				this.modalRef.hide();
+				this.router.navigateByUrl('/my-notes');
+			}
+
+		}, () => this.manager.hideLoadingLayer());
+	}
+
 	public createNote(): void {
 		this.manager.turnOnEditingMode();
 		this.router.navigateByUrl('/new-note');
@@ -76,6 +93,13 @@ export class HeaderComponent implements OnInit {
 	}
 
 	public save() {
+		this.manager.showLoadingLayer();
 		this.noteManager.saveCurrent();
+
+		this.noteManager.$openedNote.subscribe(() => {
+			this.manager.hideLoadingLayer();
+			this.manager.turnOffEditingMode();
+			this.router.navigateByUrl('/my-notes');
+		});
 	}
 }

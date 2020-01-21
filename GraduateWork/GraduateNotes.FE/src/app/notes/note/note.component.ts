@@ -4,6 +4,7 @@ import { NoteManager } from '../note.manager';
 import { ActivatedRoute } from '@angular/router';
 import { NoteService } from '../note.service';
 import { HeaderManager } from 'src/app/header/header.manager';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -15,12 +16,14 @@ export class NoteComponent implements OnInit {
 
 	private note: Note;
 	private content: string;
+	private safeHtml: SafeHtml;
 
 	constructor(
 		private noteManager: NoteManager,
 		private noteService: NoteService,
 		private route: ActivatedRoute,
-		private headerManager: HeaderManager
+		private headerManager: HeaderManager,
+		private domSanitizer: DomSanitizer
 	) {
 
 	}
@@ -32,9 +35,12 @@ export class NoteComponent implements OnInit {
 
 		if (this.note === undefined) {
 			this.note = new Note();
-			this.note.Type = NoteType.text;
-			this.note.Created = new Date();
-			this.note.Content = '';
+			this.note.type = NoteType.text;
+			this.note.created = new Date();
+			this.note.content = '';
+			this.safeHtml = this.domSanitizer.bypassSecurityTrustHtml('<p>Write saffs here</p>');
+		} else {
+			this.safeHtml = this.domSanitizer.bypassSecurityTrustHtml(this.note['content']);
 		}
 
 		this.noteManager.updateLocal(this.note);
@@ -45,7 +51,7 @@ export class NoteComponent implements OnInit {
 	// }
 
 	public onContentChange(content: string) {
-		this.note.Content = content;
+		this.note.content = content;
 		this.noteManager.updateLocal(this.note);
 	}
 }

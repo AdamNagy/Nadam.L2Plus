@@ -4,7 +4,7 @@ namespace GraduateNotes.Service.Contract.Models
 {
     public class Note
     {
-        public int Id { get; }
+        public int Noteid { get; set; }
         public string Content { get; set; }
         public NoteType Type { get; set; }
         public DateTime Created { get; set; }
@@ -16,7 +16,7 @@ namespace GraduateNotes.Service.Contract.Models
 
         public Note(int id)
         {
-            Id = id;
+            Noteid = id;
         }
     }
 }

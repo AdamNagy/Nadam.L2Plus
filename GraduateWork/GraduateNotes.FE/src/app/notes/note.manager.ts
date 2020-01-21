@@ -35,10 +35,10 @@ export class NoteManager {
 		private accountManager: AccountManager
 	) {
 		this.openedNote = {
-			Content: '',
-			Id: -1,
-			Created: new Date(),
-			Type: NoteType.text
+			content: '',
+			noteid: -1,
+			created: new Date(),
+			type: NoteType.text
 		};
 
 		this._$openedNote = new BehaviorSubject<Note>(this.openedNote);
@@ -53,7 +53,7 @@ export class NoteManager {
 
 	public saveCurrent(): void {
 
-		if ( this.openedNote.Id === undefined ) {
+		if ( this.openedNote.noteid === undefined) {
 			this.noteService
 				.post(this.openedNote, this.accountManager.token)
 				.subscribe(newNote => {
@@ -77,7 +77,9 @@ export class NoteManager {
 	}
 
 	public getNoteById(id: number): Note {
-		return this.notes.find(item => item.Id === id);
+		const note = this.notes.find(item => item.noteid === id);
+		// tslint:disable-next-line: no-string-literal
+		return note;
 	}
 
 	// public updateCurrent(): void {

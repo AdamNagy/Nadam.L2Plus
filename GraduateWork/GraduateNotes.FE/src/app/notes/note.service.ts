@@ -53,7 +53,7 @@ export class NoteService {
 			})
 		};
 
-		return this.http.delete<boolean>(`${environment.noteApi}/delete/${note.Id}`, httpOptions);
+		return this.http.delete<boolean>(`${environment.noteApi}/delete/${note.noteid}`, httpOptions);
 	}
 
 	public deleteThese(notes: Note[], token: string): Observable<boolean> {
@@ -86,6 +86,6 @@ export class NoteService {
 			})
 		};
 
-		return this.http.get<string>(`${environment.noteApi}/get/${note.Id}/link`, httpOptions);
+		return this.http.get<string>(`${environment.noteApi}/get/${note.noteid}/link`, httpOptions);
 	}
 }

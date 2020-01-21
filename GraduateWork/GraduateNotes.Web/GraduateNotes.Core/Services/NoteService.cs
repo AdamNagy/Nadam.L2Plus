@@ -24,7 +24,7 @@ namespace GraduateNotes.Service.NotesDomain
             return Map(noteEntity);
         }
 
-        public bool Delete(int id)
+        public bool Delete(int noteId, int userId)
         {
             // repository.
             throw new System.NotImplementedException();
@@ -36,9 +36,10 @@ namespace GraduateNotes.Service.NotesDomain
             return entities.Select(Map);
         }
 
-        public Note Update(Note toUpdate)
+        public Note Update(Note toUpdate, int userId)
         {
-            throw new System.NotImplementedException();
+            var entity = Map(toUpdate, userId);
+            return Map(repository.Update(entity));
         }
 
         private Note Map(NoteEntity entity)
@@ -55,9 +56,10 @@ namespace GraduateNotes.Service.NotesDomain
         {
             return new NoteEntity()
             {
+                Id = businessModel.Noteid,
                 Content = businessModel.Content,
                 Type = (int)businessModel.Type,
-                OwnerId = userId
+                OwnerId = userId                
             };
         }
     }
