@@ -42,6 +42,50 @@ export class NoteService {
 			})
 		};
 
-		return this.http.post<Note>(`${environment.noteApi}/patch`, note, httpOptions);
+		return this.http.patch<Note>(`${environment.noteApi}/patch`, note, httpOptions);
+	}
+
+	public delete(note: Note, token: string): Observable<boolean> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': 'Bearer ' + token
+			})
+		};
+
+		return this.http.delete<boolean>(`${environment.noteApi}/delete/${note.Id}`, httpOptions);
+	}
+
+	public deleteThese(notes: Note[], token: string): Observable<boolean> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': 'Bearer ' + token
+			})
+		};
+
+		return this.http.delete<boolean>(`${environment.noteApi}/delete`, httpOptions);
+	}
+
+	public shareNoteWith(note: Note, who: string, token: string): Observable<boolean> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': 'Bearer ' + token
+			})
+		};
+
+		return this.http.post<boolean>(`${environment.noteApi}/post`, note, httpOptions);
+	}
+
+	public getSharableLinkFor(note: Note, token: string): Observable<string> {
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+				'Authorization': 'Bearer ' + token
+			})
+		};
+
+		return this.http.get<string>(`${environment.noteApi}/get/${note.Id}/link`, httpOptions);
 	}
 }

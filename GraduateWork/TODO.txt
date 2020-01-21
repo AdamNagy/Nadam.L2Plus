@@ -6,4 +6,8 @@
 - facebook login
 - simple registration
 
+- check update/create note: why is it posted twice?
 - full teszt
+- publish to azure (SQL db, Web API, FE)
+
+- check design, furthure work on it
