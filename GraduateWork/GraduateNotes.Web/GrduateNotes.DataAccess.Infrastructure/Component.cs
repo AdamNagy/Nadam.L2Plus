@@ -3,6 +3,7 @@
 using GraduateNotes.DataAccess.Contract.Repositories;
 using GraduateNotes.DataAccess.Repositories;
 using GraduateNotes.DataAccess;
+using GraduateNotes.SqlServerDataAccess.Repositories;
 
 namespace GrduateNotes.DataAccess.Infrastructure
 {
@@ -13,6 +14,7 @@ namespace GrduateNotes.DataAccess.Infrastructure
             return collection
                 .AddScoped<INoteRepository, NoteRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<INoteSharingRepository, NoteSharingRepository>()
                 .AddDbContext<GraduateNotesContext>();
         }
     }

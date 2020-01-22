@@ -103,4 +103,11 @@ export class NoteManager {
 		this.openedNote = undefined;
 		this.$openedNote.next(undefined);
 	}
+
+	public shareNote(partnerEmail: string, noteId: number) {
+		this.noteService.shareNoteWith({partnerid: partnerEmail, noteid: noteId}, this.accountManager.token)
+			.subscribe(item => {
+				this._$saveSuccess.next(true);
+			});
+	}
 }

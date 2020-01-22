@@ -51,5 +51,10 @@ namespace GraduateNotes.DataAccess.Repositories
             table.Remove(toDeleteNote);
             context.SaveChanges();
         }
+
+        public void ShareNote(int owner, int partner, int noteId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Models;
+using GraduateNotes.API.Models;
 
 namespace GraduateNotes.API.Controllers
 {
@@ -69,12 +70,14 @@ namespace GraduateNotes.API.Controllers
         //    throw new NotImplementedException();
         //}
 
-        //[HttpPost]
-        //[Route("share")]
-        //public string Share(int noteId, string shareWith)
-        //{
-        //    service.Share(noteId, shareWith);
-        //    return "All good";
-        //}
+        [HttpPost]
+        [Route("share-note")]
+        public string Share([FromBody]NoteSharingRequest request)
+        {
+            int userId = -1;
+            int.TryParse(HttpContext.User.Identity.Name, out userId);
+            service.ShareNote(userId, request.partnerid, request.noteid);
+            return "All good";
+        }
     }
 }

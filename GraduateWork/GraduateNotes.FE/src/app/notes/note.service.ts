@@ -67,7 +67,7 @@ export class NoteService {
 		return this.http.delete<boolean>(`${environment.noteApi}/delete`, httpOptions);
 	}
 
-	public shareNoteWith(note: Note, who: string, token: string): Observable<boolean> {
+	public shareNoteWith(request: any, token: string): Observable<boolean> {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/json',
@@ -75,7 +75,7 @@ export class NoteService {
 			})
 		};
 
-		return this.http.post<boolean>(`${environment.noteApi}/post`, note, httpOptions);
+		return this.http.post<boolean>(`${environment.noteApi}/share-note`, request, httpOptions);
 	}
 
 	public getSharableLinkFor(note: Note, token: string): Observable<string> {
