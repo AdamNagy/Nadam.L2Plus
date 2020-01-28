@@ -63,13 +63,6 @@ namespace GraduateNotes.API.Controllers
             return Ok(updated);
         }
 
-        //[HttpGet]
-        //[Route("get/shareablelink/{id}")]
-        //public IEnumerable<Note> GetShareableLinkFor([FromRoute]int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         [HttpPost]
         [Route("share-note")]
         public string Share([FromBody]NoteSharingRequest request)

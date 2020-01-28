@@ -1,12 +1,12 @@
 - update note V
-- delete note V
-- multiple select note (deleteion and sharing is available this way) V (selection)
-- share with other user (read only)
+- delete note
+- multiple select note (deleteion and sharing is available this way)
+- share with other user (read only) V
 - public sharable link for note (read only)
 - facebook login
 - simple registration	V
 
-- check update/create note: why is it posted twice?	V
+- check update/create note: why is it posted twice?
 - full teszt
 - publish to azure (SQL db, Web API, FE)
 

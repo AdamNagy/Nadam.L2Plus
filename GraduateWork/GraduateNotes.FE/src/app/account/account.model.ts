@@ -1,18 +1,18 @@
 export interface LoginRequestModel {
-    Email: string;
-    Password: string;
+    email: string;
+    password: string;
 }
 
 export interface UserModel {
-	Password: string;
+	password: string;
 	token: string;
 	firstName: string;
 	lastName: string;
-	Email: string;
+	email: string;
 	id: string;
 }
 
 export interface RegisterRequestModel {
-	Email: string;
-    Password: string;
+	email: string;
+    password: string;
 }

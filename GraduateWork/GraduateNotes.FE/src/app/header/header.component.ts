@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NoteManager } from '../notes/note.manager';
 import { AccountManager } from '../account/account.manager';
 import { UserModel } from '../account/account.model';
+import { timeout, skipWhile, filter } from 'rxjs/operators';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -41,25 +42,27 @@ export class HeaderComponent implements OnInit {
 			this.isLoggedIn = value;
 		});
 
-		this.accountManager.$account.subscribe(token => {
-			console.log(`token is: ${token}`);
-
-			if ( token !== undefined ) {
-				this.email = (token as any).email;
+		this.accountManager.$account
+			.pipe(filter(response => response !== undefined))
+			.subscribe(account => {
+				this.email = account.email;
 				this.manager.logIn();
 				this.manager.hideLoadingLayer();
 				if ( this.modalRef ) {
 					this.modalRef.hide();
 				}
 				this.router.navigateByUrl('/my-notes');
-			}
+			}, () => this.manager.hideLoadingLayer());
 
-		}, () => this.manager.hideLoadingLayer());
+		this.accountManager.$error
+			.subscribe(() => {
+				this.manager.hideLoadingLayer();
+			});
 	}
 
 	public login(email, password): void {
 		this.manager.showLoadingLayer();
-		this.accountManager.login({Email: email, Password: password});
+		this.accountManager.login({email, password});
 	}
 
 	public logout() {
@@ -70,7 +73,7 @@ export class HeaderComponent implements OnInit {
 
 	public register(email, password): void {
 		this.manager.showLoadingLayer();
-		this.accountManager.register({Email: email, Password: password});
+		this.accountManager.register({email, password});
 
 		// this.accountManager.$token.subscribe(token => {
 		// 	console.log(`token is: ${token}`);
