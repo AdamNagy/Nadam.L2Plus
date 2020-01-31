@@ -16,3 +16,9 @@ export interface RegisterRequestModel {
 	email: string;
     password: string;
 }
+
+export interface  LoginResponeModel {
+	success: boolean;
+	errorMessage: string;
+	account: UserModel;
+}

@@ -4,12 +4,11 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NoteManager } from '../notes/note.manager';
 import { AccountManager } from '../account/account.manager';
-import { UserModel } from '../account/account.model';
-import { timeout, skipWhile, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 @Component({
 	// tslint:disable-next-line:component-selector
-	selector: 'header',
+	selector: 'header-bar',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })
@@ -20,9 +19,7 @@ export class HeaderComponent implements OnInit {
 	private isLoggedIn: boolean;
 	private isEditing: boolean;
 	private email: string;
-
 	public modalRef: BsModalRef;
-
 
 	constructor(
 		private accountManager: AccountManager,
@@ -34,61 +31,42 @@ export class HeaderComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.manager.$editingMode.subscribe(value => {
-			this.isEditing = value;
-		});
-
-		this.manager.$loggedIn.subscribe(value => {
-			this.isLoggedIn = value;
-		});
+		this.manager.$editingMode
+			.subscribe(value => {
+				this.isEditing = value;
+			});
 
 		this.accountManager.$account
 			.pipe(filter(response => response !== undefined))
 			.subscribe(account => {
 				this.email = account.email;
-				this.manager.logIn();
 				this.manager.hideLoadingLayer();
+
 				if ( this.modalRef ) {
 					this.modalRef.hide();
 				}
-				this.router.navigateByUrl('/my-notes');
-			}, () => this.manager.hideLoadingLayer());
 
-		this.accountManager.$error
-			.subscribe(() => {
-				this.manager.hideLoadingLayer();
-			});
+				this.router.navigateByUrl('/my-notes');
+			}, () => this.manager.showErrorLayer('Login failed, please try again later'));
 	}
 
-	public login(email, password): void {
+	public loginHandler(email, password): void {
 		this.manager.showLoadingLayer();
 		this.accountManager.login({email, password});
 	}
 
-	public logout() {
+	public logoutHandler() {
 		this.accountManager.logout();
 		this.noteManager.reset();
 		this.router.navigateByUrl('/');
 	}
 
-	public register(email, password): void {
+	public registerHandler(email, password): void {
 		this.manager.showLoadingLayer();
-		this.accountManager.register({email, password});
-
-		// this.accountManager.$token.subscribe(token => {
-		// 	console.log(`token is: ${token}`);
-
-		// 	if ( token !== '' ) {
-		// 		this.manager.logIn();
-		// 		this.manager.hideLoadingLayer();
-		// 		this.modalRef.hide();
-		// 		this.router.navigateByUrl('/my-notes');
-		// 	}
-
-		// }, () => this.manager.hideLoadingLayer());
+		this.accountManager.register({ email, password });
 	}
 
-	public createNote(): void {
+	public createNoteHandler(): void {
 		this.manager.turnOnEditingMode();
 		this.router.navigateByUrl('/new-note');
 	}

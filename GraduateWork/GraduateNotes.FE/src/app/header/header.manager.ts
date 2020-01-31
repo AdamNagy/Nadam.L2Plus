@@ -21,10 +21,16 @@ export class HeaderManager {
         return this._$showLoadingLayer;
 	}
 
+	private _$showErrorLayer: Subject<string>;
+    get $showErrorLayer(): Subject<string> {
+        return this._$showErrorLayer;
+	}
+
 	constructor() {
 		this._$editingMode = new Subject<boolean>();
 		this._$loggedIn = new Subject<boolean>();
 		this._$showLoadingLayer = new Subject<boolean>();
+		this._$showErrorLayer = new Subject<string>();
 	}
 
 	public turnOnEditingMode(): void {
@@ -35,19 +41,15 @@ export class HeaderManager {
 		this._$editingMode.next(false);
 	}
 
-	public logIn(): void {
-		this._$loggedIn.next(true);
-	}
-
-	public logOut(): void {
-		this._$loggedIn.next(false);
-	}
-
 	public showLoadingLayer() {
 		this._$showLoadingLayer.next(true);
 	}
 
 	public hideLoadingLayer() {
 		this._$showLoadingLayer.next(false);
+	}
+
+	public showErrorLayer(message: string) {
+		this._$showErrorLayer.next(message);
 	}
 }

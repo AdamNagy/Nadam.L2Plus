@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+
 using GraduateNotes.DataAccess.Contract.Repositories;
 using GraduateNotes.DataAccess.Contract.Models;
 

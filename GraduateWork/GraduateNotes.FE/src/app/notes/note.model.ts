@@ -9,3 +9,8 @@ export class Note {
 	public created: Date;
 	public type: NoteType;
 }
+
+export class NotesResponse {
+	myNotes: Note[];
+	sharedWithMe: Note[];
+}

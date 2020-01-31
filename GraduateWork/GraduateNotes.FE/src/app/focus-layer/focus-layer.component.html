@@ -1,0 +1,13 @@
+<div class="layer" [style.display]="layerVisible ? 'block' : 'none'">
+	<div class="container" style="height: 100%;">
+		<div class="row align-items-center" style="height: 100%;">
+			<div class="col align-self-center">
+				<img *ngIf="showLoading" src="../../assets/tenor.gif" class="mx-auto d-block">
+				<span *ngIf="!showLoading">
+					<h1>{{message}}</h1>
+					<button class="btn btn-primary btn-sm" (click)="hideLayer()">Ok</button>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
+
 using GraduateNotes.DataAccess;
 using GraduateNotes.DataAccess.Contract.Models;
 using GraduateNotes.DataAccess.Contract.Repositories;
-using Microsoft.EntityFrameworkCore;
 
 namespace GraduateNotes.SqlServerDataAccess.Repositories
 {
@@ -26,7 +25,7 @@ namespace GraduateNotes.SqlServerDataAccess.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<NoteSharing> Read(int partner)        
+        public IEnumerable<NoteSharing> Read(int partner)
             => table.Where(item => item.SharedWithId == partner);
         
     }

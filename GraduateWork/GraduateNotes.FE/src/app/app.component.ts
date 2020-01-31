@@ -9,18 +9,18 @@ import { HeaderManager } from './header/header.manager';
 })
 export class AppComponent implements OnInit {
 
-    private title = 'Graduatenotes';
-	private showLoadingLayer: boolean;
+    private title = 'Notesbook';
+	// private showLoadingLayer: boolean;
 	public modalRef: BsModalRef;
 
 	constructor(
 		private manager: HeaderManager) {
-			this.showLoadingLayer = false;
+			// this.showLoadingLayer = false;
 		 }
 
 	 ngOnInit() {
-		this.manager.$showLoadingLayer.subscribe(value => {
-			this.showLoadingLayer = value;
-		});
+		// this.manager.$showLoadingLayer.subscribe(value => {
+		// 	this.showLoadingLayer = value;
+		// });
 	 }
 }
