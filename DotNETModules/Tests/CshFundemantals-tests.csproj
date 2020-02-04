@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CshFundemantals\CshFundemantals.csproj">
+    <ProjectReference Include="..\CshFundemantals\CshFundemantals-tasks.csproj">
       <Project>{57AD7CF1-889B-4B9B-808D-B7B1E295B352}</Project>
-      <Name>CshFundemantals</Name>
+      <Name>CshFundemantals-tasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

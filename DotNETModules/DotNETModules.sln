@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NJ02", "NJ02", "{C90D3D8B-CAC0-441A-8BE3-9F718B26465F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NJ02-CshFundemantals", "NJ02-CshFundemantals", "{C90D3D8B-CAC0-441A-8BE3-9F718B26465F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CshFundemantals", "CshFundemantals\CshFundemantals.csproj", "{57AD7CF1-889B-4B9B-808D-B7B1E295B352}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CshFundemantals-tasks", "CshFundemantals\CshFundemantals-tasks.csproj", "{57AD7CF1-889B-4B9B-808D-B7B1E295B352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6F402AB1-5B73-4804-94CE-C7FA16F8529E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CshFundemantals-tests", "Tests\CshFundemantals-tests.csproj", "{6F402AB1-5B73-4804-94CE-C7FA16F8529E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NJ05-LINQ", "NJ05-LINQ\NJ05-LINQ.csproj", "{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq-tasks", "NJ05-LINQ\Linq-tasks.csproj", "{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NJ05-LINQ", "NJ05-LINQ", "{78F0EBED-A450-491D-B91C-100C212BAA32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{57AD7CF1-889B-4B9B-808D-B7B1E295B352} = {C90D3D8B-CAC0-441A-8BE3-9F718B26465F}
 		{6F402AB1-5B73-4804-94CE-C7FA16F8529E} = {C90D3D8B-CAC0-441A-8BE3-9F718B26465F}
+		{6708AE6C-E1FE-4B1F-BBA8-EBE5F48B9F1F} = {78F0EBED-A450-491D-B91C-100C212BAA32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC52B10D-A922-45E7-BE3A-19B1FDF09EAE}
