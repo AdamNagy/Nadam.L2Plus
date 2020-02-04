@@ -1,0 +1,25 @@
+.selection-list-container {
+	position: fixed;
+	top: 46px;
+	left: -80px;
+	background-color: rgba(100,100,100,.5);
+	padding-top: 30px;
+	padding-left: 10px;
+	height: 100%;
+	z-index: 90;
+	width: 100px;
+	transition: all 0.4;
+
+	& ul {
+		list-style: none;
+
+		& li {
+			border-bottom: 1px solid orange;
+		}
+	}
+
+	&:hover {
+		left: 0;
+	}
+
+}

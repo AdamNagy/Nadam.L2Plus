@@ -1,0 +1,77 @@
+<div id="header" class="container-fluid p-1">
+	<span class="float-left">
+		{{title}}
+	</span>
+
+	<!-- NOT AUTHENTICATED -->
+	<span *ngIf="!isLoggedIn" class="row float-right pr-3">
+			
+		<div class="input-group width-200 mr-1">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">@</span>
+			</div>
+			<input #email type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="test1@gmail.com">
+		</div>	
+	
+		<div class="input-group width-200 mr-1">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">**</span>
+			</div>
+			<input #password type="password" class="form-control" placeholder="Passphasae" aria-label="Passphasae" aria-describedby="basic-addon1" value="test1">
+		</div>	
+		
+		<button type="button" class="btn btn-primary mr-1" (click)="loginHandler(email.value, password.value)"> Login </button>
+		<!-- <button type="button" class="btn btn-primary mr-1"> FB login </button>	 -->
+		<button type="button" class="btn btn-info" (click)="openModal(template)"> Register </button>			
+	</span>
+
+	<!-- AUTHENTICATED -->	
+	<span *ngIf="isLoggedIn" class="row float-right pr-3">			
+		<button class="btn btn-info mr-1" (click)="logoutHandler()">Logout</button>
+	</span>
+	<span *ngIf="isLoggedIn" class="row float-left pl-3">			
+		{{email}}
+	</span>
+	<span *ngIf="isLoggedIn !isEditing" class="row justify-content-center">
+		<div *ngIf="!isEditing" class="col col-lg-2">
+			<button class="btn btn-info mr-1" (click)="createNoteHandler()">+ New note</button>
+		</div>
+		<span *ngIf="isEditing">
+			<div  class="col">
+				<button class="btn btn-info mr-1" (click)="saveHandler()">Save</button>
+				<button class="btn btn-info mr-1" (click)="cancelHandler()">Cancel</button>
+			</div>
+		</span> 
+	</span>
+
+</div>
+
+<ng-template #template>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">
+			Just a few stepps
+		</h4>
+		<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+				<span aria-hidden="true"> &times; </span>
+		</button>
+	</div>
+	
+	<div class="modal-body">
+		<div class="input-group flex-nowrap pb-2">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">@</span>
+			</div>
+			<input #regemail type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+
+		<div class="input-group flex-nowrap pb-2">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">**</span>
+			</div>
+			<input #regpassword type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+		</div>
+
+		<button type="button" class="btn btn-info" (click)="registerHandler(regemail.value, regpassword.value)">Lets try!</button>
+	</div>
+</ng-template>
+

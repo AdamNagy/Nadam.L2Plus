@@ -1,0 +1,38 @@
+<div class="container mt-3">
+	<div class="row justify-content-center">
+		<div *ngFor="let note of notes" class="note-item">			
+			<div class="note-header">
+				<button class="btn btn-sm btn-warning mr-1" (click)="delete(note.noteid)">Delete</button>
+				<button class="btn btn-sm btn-info mr-1" (click)="select(note.noteid)">Select</button>
+				<button class="btn btn-sm btn-info" (click)="openSharingModal(note.noteid, sharingtemplate)">Share</button>
+			</div>
+
+			<div class="note-content" [innerHtml]="note.content" (click)="openNote(note.noteid)">
+			</div>
+		</div>
+	</div>
+</div>
+
+<selection-list></selection-list>
+
+<ng-template #sharingtemplate>
+	<div class="modal-header">
+		<h4 class="modal-title pull-left">
+			Share note
+		</h4>
+		<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+			<span aria-hidden="true"> &times; </span>
+		</button>
+	</div>
+		
+	<div class="modal-body">
+		<div class="input-group flex-nowrap pb-2">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="addon-wrapping">Partner emal</span>
+			</div>
+			<input #partneremail type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+
+		<button type="button" class="btn btn-info" (click)="shareNote(partneremail.value)">Lets try!</button>
+	</div>
+</ng-template>

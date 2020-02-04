@@ -27,8 +27,6 @@ Job runner:
   Op2: custom implementation
   Op3: Windows Task Scheduler (not good, virtual machine required)
 
-Realtime: SignalR (what if there is conflict)
-// more service instance problem, needs to be extracted to a separated server/service/web app
 
 Front-end Tech Stack
 --------------------------------------------------------
