@@ -42,6 +42,7 @@ namespace NJ05_LINQ
             var lessThanAvg = employees.Where(p => p.Salary < avg);
         }
 
+        // Task: Display the name of employees who earn the same amount and sort the result by salaries then names in an ascending order
         static void SameSalary()
         {
             var query = employees.GroupBy(p => p.Salary)
@@ -55,6 +56,17 @@ namespace NJ05_LINQ
                 foreach (var item in group.Value)                
                     Console.WriteLine(item);                
             }
+        }
+
+        // Group the employees in the following salary ranges: 200-399, 400-599, 600-799, 800-999
+        public static void SalaryGroups()
+        {
+
+        }
+
+        public static Dictionary<TKey, IEnumerable<T>> MyGroupBy<T, TKey>(this IEnumerable<T> subject, Func<T, TKey> groupper)
+        {
+            throw new NotImplementedException();
         }
     }
 
