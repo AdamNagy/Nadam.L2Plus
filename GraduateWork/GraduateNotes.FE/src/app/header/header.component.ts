@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { NoteManager } from '../notes/note.manager';
 import { AccountManager } from '../account/account.manager';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { resolve } from 'url';
 
 @Component({
 	// tslint:disable-next-line:component-selector
@@ -37,7 +38,11 @@ export class HeaderComponent implements OnInit {
 			});
 
 		this.accountManager.$account
-			.pipe(filter(response => response !== undefined))
+			.pipe(
+				filter(response => response !== undefined),
+				filter(response => response.success),
+				map(response => response.account)
+			)
 			.subscribe(account => {
 				this.email = account.email;
 				this.manager.hideLoadingLayer();
@@ -47,7 +52,7 @@ export class HeaderComponent implements OnInit {
 				}
 
 				this.router.navigateByUrl('/my-notes');
-			}, () => this.manager.showErrorLayer('Login failed, please try again later'));
+			});
 	}
 
 	public loginHandler(email, password): void {
@@ -71,7 +76,7 @@ export class HeaderComponent implements OnInit {
 		this.router.navigateByUrl('/new-note');
 	}
 
-	public cancel(): void {
+	public cancelHandler(): void {
 		this.manager.turnOffEditingMode();
 		this.router.navigateByUrl('/my-notes');
 	}
@@ -80,14 +85,14 @@ export class HeaderComponent implements OnInit {
         this.modalRef = this.modalService.show(template);
 	}
 
-	public save() {
-		this.manager.showLoadingLayer();
+	public saveHandler() {
+		this.manager.showLoadingLayer();  // kinda an effect of save note
 		this.noteManager.saveCurrent();
 
-		this.noteManager.$saveSuccess.subscribe(() => {
-			this.manager.hideLoadingLayer();
-			this.manager.turnOffEditingMode();
-			this.router.navigateByUrl('/my-notes');
-		});
+		// this.noteManager.$saveSuccess.subscribe(() => {
+			// this.manager.hideLoadingLayer();
+			// this.manager.turnOffEditingMode();
+			// this.router.navigateByUrl('/my-notes');
+		// });
 	}
 }

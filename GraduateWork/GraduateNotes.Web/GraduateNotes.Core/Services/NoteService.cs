@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using GraduateNotes.DataAccess.Contract.Repositories;
 using GraduateNotes.DataAccess.Contract.Models;
 using GraduateNotes.Service.Contract.Interfaces;
 using GraduateNotes.Service.Contract.Models;
-using System;
 
 namespace GraduateNotes.Service.NotesDomain
 {

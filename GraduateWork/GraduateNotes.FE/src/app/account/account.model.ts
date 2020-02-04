@@ -2,8 +2,12 @@ export interface LoginRequestModel {
     email: string;
     password: string;
 }
+export interface RegisterRequestModel {
+	email: string;
+	password: string;
+}
 
-export interface UserModel {
+export interface AccountModel {
 	password: string;
 	token: string;
 	firstName: string;
@@ -12,13 +16,8 @@ export interface UserModel {
 	id: string;
 }
 
-export interface RegisterRequestModel {
-	email: string;
-    password: string;
-}
-
-export interface  LoginResponeModel {
+export interface  AccountStateModel {
 	success: boolean;
 	errorMessage: string;
-	account: UserModel;
+	account: AccountModel;
 }

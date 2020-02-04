@@ -1,45 +1,48 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { AccountService } from './account.service';
-import { LoginRequestModel, UserModel, RegisterRequestModel } from './account.model';
+import { LoginRequestModel, AccountModel, RegisterRequestModel, AccountStateModel } from './account.model';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { HeaderManager } from '../header/header.manager';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AccountManager implements CanActivate  {
 
-
-	public account: UserModel;
-	private _$account: BehaviorSubject<UserModel>;
-	get $account(): BehaviorSubject<UserModel> {
+	public account: AccountStateModel;
+	private _$account: Subject<AccountStateModel>;
+	get $account(): Subject<AccountStateModel> {
 		return this._$account;
 	}
 
-	private _$error: Subject<any>;
-	get $error(): Subject<any> {
-		return this._$error;
-	}
-
 	constructor(
-		private service: AccountService
+		private service: AccountService,
+		private headerManager: HeaderManager
 	) {
-		this._$account = new BehaviorSubject<UserModel>(undefined);
-		this._$error = new Subject<UserModel>();
+		this._$account = new Subject<AccountStateModel>();
 	}
 
 	login(requestModel: LoginRequestModel): void {
 		this.service.login(requestModel)
 			.subscribe(
 				account => {
-					this.account = account;
+					this.account = {
+						account,
+						success: true,
+						errorMessage: ''
+						};
 					this.$account.next(this.account);
 				},
 				error => {
-					console.log('error happend');
-					this.$error.next(error);
-				},
-				() => console.log('HTTP request completed.')
+					this.headerManager.showErrorLayer('Login failed, please try again later');
+					this.account = {
+						account: undefined,
+						success: false,
+						errorMessage: error
+						};
+					this.$account.next(this.account);
+				}
 			);
 	}
 
@@ -47,12 +50,21 @@ export class AccountManager implements CanActivate  {
 		this.service.register(requestModel)
 			.subscribe(
 				account => {
-					this.account = account;
+					this.account = {
+						account,
+						success: true,
+						errorMessage: ''
+						};
 					this.$account.next(this.account);
 				},
 				error => {
-					console.log('error happend');
-					this.$error.next(error);
+					this.headerManager.showErrorLayer('Login failed, please try again later');
+					this.account = {
+						account: undefined,
+						success: false,
+						errorMessage: error
+						};
+					this.$account.next(this.account);
 				});
 	}
 	logout() {

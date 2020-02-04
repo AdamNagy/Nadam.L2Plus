@@ -1,14 +1,13 @@
-﻿using GraduateNotes.Service.Contract.Interfaces;
-using GraduateNotes.Service.Contract.Models;
-using GraduateNotes.DataAccess.Contract.Repositories;
-using GraduateNotes.DataAccess.Contract.Models;
-
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using GraduateNotes.Service.Contract.Interfaces;
+using GraduateNotes.Service.Contract.Models;
+using GraduateNotes.DataAccess.Contract.Repositories;
+using GraduateNotes.DataAccess.Contract.Models;
 
 namespace GraduateNotes.Service.AccountDomain
 {

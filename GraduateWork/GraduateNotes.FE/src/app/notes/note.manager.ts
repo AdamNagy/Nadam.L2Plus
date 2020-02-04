@@ -3,6 +3,7 @@ import { Note, NoteType } from './note.model';
 import { BehaviorSubject } from 'rxjs';
 import { NoteService } from './note.service';
 import { AccountManager } from '../account/account.manager';
+import { HeaderManager } from '../header/header.manager';
 
 @Injectable({
 	providedIn: 'root'
@@ -32,7 +33,8 @@ export class NoteManager {
 
 	constructor(
 		private noteService: NoteService,
-		private accountManager: AccountManager
+		private accountManager: AccountManager,
+		private headerManager: HeaderManager
 	) {
 		this.openedNote = {
 			content: '',
@@ -55,26 +57,31 @@ export class NoteManager {
 
 		if ( this.openedNote.noteid === undefined) {
 			this.noteService
-				.post(this.openedNote, this.accountManager.account.token)
+				.post(this.openedNote, this.accountManager.account.account.token)
 				.subscribe(newNote => {
 					this.notes.push(newNote);
 					this.updateLocal(newNote);
+
+					this.headerManager.hideLoadingLayer();
 
 					this._$saveSuccess.next(true);
 					this.$notes.next(this.notes);
 				});
 		} else {
 			this.noteService
-				.patch(this.openedNote, this.accountManager.account.token)
+				.patch(this.openedNote, this.accountManager.account.account.token)
 				.subscribe(newNote => {
 					this.updateLocal(newNote);
+
+					this.headerManager.hideLoadingLayer();
+
 					this._$saveSuccess.next(true);
 				});
 		}
 	}
 
 	public getNotes(): void {
-		this.noteService.get(this.accountManager.account.token)
+		this.noteService.get(this.accountManager.account.account.token)
 			.subscribe(notes => {
 				this.notes = notes;
 				this._$notes.next(this.notes);
@@ -88,7 +95,7 @@ export class NoteManager {
 	}
 
 	public delete(id: number) {
-		this.noteService.delete(id, this.accountManager.account.token)
+		this.noteService.delete(id, this.accountManager.account.account.token)
 			.subscribe(() => {
 				const noteToDelete = this.getNoteById(id);
 				this.notes.splice(this.notes.indexOf(noteToDelete), 1);
@@ -105,7 +112,7 @@ export class NoteManager {
 	}
 
 	public shareNote(partnerEmail: string, noteId: number) {
-		this.noteService.shareNoteWith({partnerid: partnerEmail, noteid: noteId}, this.accountManager.account.token)
+		this.noteService.shareNoteWith({partnerid: partnerEmail, noteid: noteId}, this.accountManager.account.account.token)
 			.subscribe(item => {
 				this._$saveSuccess.next(true);
 			});
