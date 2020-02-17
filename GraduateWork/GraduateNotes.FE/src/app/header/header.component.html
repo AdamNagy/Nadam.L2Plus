@@ -20,9 +20,9 @@
 			<input #password type="password" class="form-control" placeholder="Passphasae" aria-label="Passphasae" aria-describedby="basic-addon1" value="test1">
 		</div>	
 		
-		<button type="button" class="btn btn-primary mr-1" (click)="loginHandler(email.value, password.value)"> Login </button>
+		<button type="button" class="btn btn-primary mr-1" (click)="loginHandler(email.value, password.value)">Login</button>
 		<!-- <button type="button" class="btn btn-primary mr-1"> FB login </button>	 -->
-		<button type="button" class="btn btn-info" (click)="openModal(template)"> Register </button>			
+		<button type="button" class="btn btn-info" (click)="openModal(template)">Register</button>
 	</span>
 
 	<!-- AUTHENTICATED -->	
@@ -43,7 +43,6 @@
 			</div>
 		</span> 
 	</span>
-
 </div>
 
 <ng-template #template>
@@ -56,6 +55,7 @@
 		</button>
 	</div>
 	
+	<!-- Registration modal -->
 	<div class="modal-body">
 		<div class="input-group flex-nowrap pb-2">
 			<div class="input-group-prepend">

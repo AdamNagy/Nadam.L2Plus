@@ -27,9 +27,7 @@ export class HeaderComponent implements OnInit {
 		private noteManager: NoteManager,
 		private manager: HeaderManager,
 		private router: Router,
-		private modalService: BsModalService) {
-
-	}
+		private modalService: BsModalService) {	}
 
 	ngOnInit() {
 		this.manager.$editingMode
