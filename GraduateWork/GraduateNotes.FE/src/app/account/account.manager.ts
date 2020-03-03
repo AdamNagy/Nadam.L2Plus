@@ -8,11 +8,11 @@ import { HeaderManager } from '../header/header.manager';
 @Injectable({
 	providedIn: 'root'
 })
-export class AccountManager implements CanActivate  {
+export class AccountManager implements CanActivate {
 
-	public account: AccountStateModel;
-	private _$account: Subject<AccountStateModel>;
-	get $account(): Subject<AccountStateModel> {
+	public account: AccountModel;
+	private _$account: Subject<AccountModel>;
+	get $account(): Subject<AccountModel> {
 		return this._$account;
 	}
 
@@ -20,52 +20,56 @@ export class AccountManager implements CanActivate  {
 		private service: AccountService,
 		private headerManager: HeaderManager
 	) {
-		this._$account = new Subject<AccountStateModel>();
+		this._$account = new Subject<AccountModel>();
 	}
 
 	login(requestModel: LoginRequestModel): void {
+		// this.service.login(requestModel)
+		// 	.subscribe(
+		// 		account => {
+		// 			this.account = {
+		// 				account,
+		// 				success: true,
+		// 				errorMessage: ''
+		// 				};
+		// 			this.$account.next(this.account);
+		// 		},
+		// 		error => {
+		// 			this.headerManager.showErrorLayer('Login failed, please try again later');
+		// 			this.account = {
+		// 				account: undefined,
+		// 				success: false,
+		// 				errorMessage: error
+		// 				};
+		// 			this.$account.next(this.account);
+		// 		}
+		// 	);
 		this.service.login(requestModel)
-			.subscribe(
-				account => {
-					this.account = {
-						account,
-						success: true,
-						errorMessage: ''
-						};
-					this.$account.next(this.account);
-				},
-				error => {
-					this.headerManager.showErrorLayer('Login failed, please try again later');
-					this.account = {
-						account: undefined,
-						success: false,
-						errorMessage: error
-						};
-					this.$account.next(this.account);
-				}
-			);
+					.subscribe(this._$account);
 	}
 
 	register(requestModel: RegisterRequestModel) {
+		// this.service.register(requestModel)
+		// 	.subscribe(
+		// 		account => {
+		// 			this.account = {
+		// 				account,
+		// 				success: true,
+		// 				errorMessage: ''
+		// 				};
+		// 			this.$account.next(this.account);
+		// 		},
+		// 		error => {
+		// 			this.headerManager.showErrorLayer('Login failed, please try again later');
+		// 			this.account = {
+		// 				account: undefined,
+		// 				success: false,
+		// 				errorMessage: error
+		// 				};
+		// 			this.$account.next(this.account);
+		// 		});
 		this.service.register(requestModel)
-			.subscribe(
-				account => {
-					this.account = {
-						account,
-						success: true,
-						errorMessage: ''
-						};
-					this.$account.next(this.account);
-				},
-				error => {
-					this.headerManager.showErrorLayer('Login failed, please try again later');
-					this.account = {
-						account: undefined,
-						success: false,
-						errorMessage: error
-						};
-					this.$account.next(this.account);
-				});
+					.subscribe(this._$account);
 	}
 	logout() {
 		this.account = undefined;
