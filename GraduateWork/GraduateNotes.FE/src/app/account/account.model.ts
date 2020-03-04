@@ -16,7 +16,7 @@ export interface AccountModel {
 	id: string;
 }
 
-export interface  AccountStateModel {
+export interface  LoginResponseModel {
 	success: boolean;
 	errorMessage: string;
 	account: AccountModel;

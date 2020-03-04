@@ -44,3 +44,5 @@ import { SelectionListComponent } from './selection-list/selection-list.componen
   bootstrap: [ AppComponent ]
 })
 export class AppModule {}
+
+export const appState: any = {};

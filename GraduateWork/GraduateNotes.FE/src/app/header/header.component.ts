@@ -36,11 +36,6 @@ export class HeaderComponent implements OnInit {
 			});
 
 		this.accountManager.$account
-			.pipe(
-				filter(response => response !== undefined),
-				filter(response => response.success),
-				map(response => response.account)
-			)
 			.subscribe(account => {
 				this.email = account.email;
 				this.manager.hideLoadingLayer();
@@ -86,11 +81,5 @@ export class HeaderComponent implements OnInit {
 	public saveHandler() {
 		this.manager.showLoadingLayer();  // kinda an effect of save note
 		this.noteManager.saveCurrent();
-
-		// this.noteManager.$saveSuccess.subscribe(() => {
-			// this.manager.hideLoadingLayer();
-			// this.manager.turnOffEditingMode();
-			// this.router.navigateByUrl('/my-notes');
-		// });
 	}
 }

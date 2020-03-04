@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs/Rx';
+import { tap } from 'rxjs/operators';
+
 import { AccountService } from './account.service';
-import { LoginRequestModel, AccountModel, RegisterRequestModel, AccountStateModel } from './account.model';
+import { LoginRequestModel, AccountModel, RegisterRequestModel, LoginResponseModel } from './account.model';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { HeaderManager } from '../header/header.manager';
 
@@ -24,51 +26,20 @@ export class AccountManager implements CanActivate {
 	}
 
 	login(requestModel: LoginRequestModel): void {
-		// this.service.login(requestModel)
-		// 	.subscribe(
-		// 		account => {
-		// 			this.account = {
-		// 				account,
-		// 				success: true,
-		// 				errorMessage: ''
-		// 				};
-		// 			this.$account.next(this.account);
-		// 		},
-		// 		error => {
-		// 			this.headerManager.showErrorLayer('Login failed, please try again later');
-		// 			this.account = {
-		// 				account: undefined,
-		// 				success: false,
-		// 				errorMessage: error
-		// 				};
-		// 			this.$account.next(this.account);
-		// 		}
-		// 	);
 		this.service.login(requestModel)
+					.filter((response: LoginResponseModel) => !response.success)
+					.map((response: LoginResponseModel) => response.account)
 					.subscribe(this._$account);
 	}
 
 	register(requestModel: RegisterRequestModel) {
-		// this.service.register(requestModel)
-		// 	.subscribe(
-		// 		account => {
-		// 			this.account = {
-		// 				account,
-		// 				success: true,
-		// 				errorMessage: ''
-		// 				};
-		// 			this.$account.next(this.account);
-		// 		},
-		// 		error => {
-		// 			this.headerManager.showErrorLayer('Login failed, please try again later');
-		// 			this.account = {
-		// 				account: undefined,
-		// 				success: false,
-		// 				errorMessage: error
-		// 				};
-		// 			this.$account.next(this.account);
-		// 		});
-		this.service.register(requestModel)
+
+		// maybe fire some action before as well to be able to show spinner or loading layer
+
+		this.service.login(requestModel)
+					.do((response: LoginResponseModel) => {if ( !response.success ) { console.log('shit happens'); }})
+					.filter((response: LoginResponseModel) => !response.success)
+					.map((response: LoginResponseModel) => response.account)
 					.subscribe(this._$account);
 	}
 	logout() {
