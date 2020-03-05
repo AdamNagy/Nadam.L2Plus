@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs/Rx';
-import { tap } from 'rxjs/operators';
-
+import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 import { AccountService } from './account.service';
 import { LoginRequestModel, AccountModel, RegisterRequestModel, LoginResponseModel } from './account.model';
 import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
@@ -27,6 +28,7 @@ export class AccountManager implements CanActivate {
 
 	login(requestModel: LoginRequestModel): void {
 		this.service.login(requestModel)
+					.do((response: LoginResponseModel) => {if ( !response.success ) { console.log('shit happens'); }})
 					.filter((response: LoginResponseModel) => !response.success)
 					.map((response: LoginResponseModel) => response.account)
 					.subscribe(this._$account);
