@@ -33,7 +33,6 @@ export class AccountManager implements CanActivate {
 					.map((response: LoginResponseModel) => response.account)
 					.subscribe(this._$account);
 	}
-
 	register(requestModel: RegisterRequestModel) {
 
 		// maybe fire some action before as well to be able to show spinner or loading layer
